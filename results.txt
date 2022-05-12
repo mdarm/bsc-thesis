@@ -1,5 +1,5 @@
-Analysis output report, written on 12-May-2022 23:16:59
-Elapsed time: 36.36 seconds 
+Analysis output report, written on 12-May-2022 23:40:07
+Elapsed time: 36.88 seconds 
  
 Results are printed in a way that greatly simplifies their implementation in a LaTeX table 
  

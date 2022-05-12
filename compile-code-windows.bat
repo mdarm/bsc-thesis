@@ -1,1 +1,2 @@
-matlab -nosplash -r "try; run(/path/to/EgregiousDataPadding.m); catch; end; quit"
+set srcpath=%~dp0
+matlab -nosplash -r "try; run('%srcpath%EgregiousDataPadding.m'); catch; end; quit"
