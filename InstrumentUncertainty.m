@@ -1,34 +1,47 @@
 function [sigma] = InstrumentUncertainty(errVI, errTime, errTemp)
+% This functions estimates the total measurement error of the multimeter,
+% the timer and all eleven thermocouples. The method is known as single-
+% sample uncertainty analysis, as defined by Moffat [2]
 
-%% Εκτίμηση αβεβαιότητας μετρήσεων τάσης και ρεύματος
+% Bibliography 
+%   [1] Hugh W. Coleman, W. Glenn Steele Experimentation, Validation,
+%       and Uncertainty Analysis for Engineers, p. 199
+%
+%   [2] Moffat, Robert J. Describing the uncertainties in experimental
+%	results 1988-01, https://doi.org/10.1016/0894-1777(88)90043-X 
+%
+%   [3] Serbes, Arda Sefer Halkasal Kesitli Borulardaki Teğetsel Girişli
+%       Sönümlü Döngülü Laminer Akışlarda Isı Taşınımı Karakteristiğinin
+%       Deneysel Olarak İncelenmesi, p. 86 
 
-vS = 0.01; iS = 0.01; % ευαισθησία μετρητικού
+
+%% Error estimate of Voltage and Current 
+
+vS = 0.01; iS = 0.01; % sensor sensitivity 
 data = importdata('errorVI.csv');
-%data = importdata(errVI);
 
 vData = data.data(:, 1);
 iData = data.data(:, 2);
 
-% συνολικό σφάλμα
+% total error 
 sigma.volt = sqrt( (vS/2) ^ 2 +  (1.96 * std(vData)) ^ 2 );
 sigma.amp = sqrt( (iS/2) ^ 2 +  (1.96 * std(iData)) ^ 2 );
 
-%% Εκτίμηση αβεβαιότητας μέτρησης χρόνου
+%% Error estimate of time measurements 
 
-tS = 0.01; % ευαισθησία μετρητικού
+tS = 0.01; % sensor sensitivity 
 data = importdata('errorTime.csv');
-%data = importdata(errTime);
 
 tData = data.data(:, 1);
 
-% συνολικό σφάλμα
+% total error
 sigma.time = sqrt( (tS/2) ^ 2 + (1.96 * std(tData)) ^ 2 );
 
-%% Εκτίμηση αβεβαιότητας μετρήσεων θερμοκρασίας (11 θερμοστοιχεία)
+%% Error estimate of temperature measurements (11 thermocouples)
 
-tempS = 0.01; % συστηματικό σφάλμα όπως sυπολογίστηκε από Arda[3]
+tempS = 0.01; % 0th-Order error as calculated by Arda[3]
 
-% σφάλμα Ν^{ης} τάξης
+% 1st-Order error 
 tempVar = zeros(17, 11);
 data = readtable(errTemp, 'Sheet', 'axialFlow');
 data = table2array(data);
@@ -51,6 +64,7 @@ for i = 45:15:90
    end
 end
 
+% pooled statistics
 poolVar = zeros(1, 11);
 for k = 1:numCol
     poolVar(1, k) = sqrt( mean(tempVar(:, k)) / ((c + 1) * numRow));
@@ -58,9 +72,10 @@ end
 
 poolStd = 2.36 * poolVar;
 
-% συνολικό σφάλμα
+% total error 
 sigmaTempTot = sqrt(tempS ^ 2 + poolStd .^ 2)';
 
+% save errors in table 
 rowNames = {'uncertTC1', 'uncertTC2', 'uncertTC3', 'uncertTC4',...
     'uncertTC5', 'uncertTC6', 'uncertTC7', 'uncertTC8', 'uncertTC9',...
     'uncertTCinlet', 'uncertTCoutlet'};
