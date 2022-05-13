@@ -51,4 +51,3 @@ for j = 1:2
     ChangeInterpreter(gcf, 'Latex');
     Plot2LaTeX(hFig, ['flowcallibration', num2str(j)])
 end
-

@@ -16,8 +16,8 @@ The basic calculations are handled by one script, namely `EgregiousDataPadding.m
 * differentiating numerically and performing error propagation: `UncertaintyPropagation.m`
 * performing single-sample-uncertainty analysis: `InstrumentUncertainty.m`
 * calculating temperature homogeneity: `TemperatureHomogeneity.m`
-* performing flow meter callibration: `FlowCalibratioin.m`
-* changing the string interpreter: `ChangeInterpreter.m`
+* performing flow meter calibration: `FlowCalibratioin.m`
+* changing the string interpreter in plots: `ChangeInterpreter.m`
 * plotting in a predefined size: `PlotDimensions.m`
 
 All scripts are self explanatory (in Greek) and have the appropriate references where needed.
@@ -34,7 +34,7 @@ The `raw data` directory contains two sub-directories: `error estimate` and `flo
 
 ## Running the code
 
-For a quick tryout, just open `EgregiousDataPadding.m`, run it, and see what figures and results it comes up with. This should work regardless of the Matlab's directory, as the script has instructions to cd() to the directory it is to work in.
+For a quick tryout, just open `EgregiousDataPadding.m`, run it, and see what figures and results it comes up with. This should work regardless of the MATLAB's directory, as the script has instructions to cd() to the directory it is to work in.
 
 Or, for calling the scripts from the Windows' command line:
 
