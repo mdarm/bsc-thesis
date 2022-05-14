@@ -16,11 +16,11 @@ The basic calculations are handled by one script, namely `EgregiousDataPadding.m
 * differentiating numerically and performing error propagation: `UncertaintyPropagation.m`
 * performing single-sample-uncertainty analysis: `InstrumentUncertainty.m`
 * calculating temperature homogeneity: `TemperatureHomogeneity.m`
-* performing flow meter calibration: `FlowCalibratioin.m`
+* performing flow meter calibration: `FlowCalibration.m`
 * changing the string interpreter in plots: `ChangeInterpreter.m`
 * plotting in a predefined size: `PlotDimensions.m`
 
-All scripts are self explanatory (in Greek) and have the appropriate references where needed.
+All scripts are self explanatory (in Greek, still working on the English version) and have the appropriate references where needed.
 
 ### external scripts
 A few other toolboxes have been used in the code and have been incorporated for accessibility reasons; I know, it's not the best method, but it does prevent the code from potentially breaking down when they get updates. In case you wish to work more with the code, or with parts of it, you might want to download these toolboxes yourself. These toolboxes are for: 
