@@ -11,69 +11,69 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%% Αυτόματος προσδιορισμός θέσης αρχείου 
+%% Acquire file path and set it as current directory 
 
-% Προσδιορισμός θέσης του εν λόγω αρχείου 
+% Returns the full path of the current script 
 folder = fileparts( which(mfilename) ); 
 
-% Προσθήκη όλων των υποφακέλων 
+% Adds all subdirectories 
 addpath( genpath(folder) );
 
-%% Εισαγωγή δεδομένων
-tic;                            % χρονομέτρηση κώδικα
+%% Data input 
 
-dInner = 22 * 10 ^ -3;          % διάμετρος εσωτερικού κυλίνδρου, [m]
-dOuter = 40 * 10 ^ -3;          % διάμετρος εξωτερικού κυλίνδρου, [m]
-voltRes = 29.5;                 % τάση αντίστασης σε βολτ, [V]
-ampRes = 0.63;                  % ένταση ρεύματος αντίστασης σε αμπέρ, [A]
-position = 0.05:0.1:0.9;        % θέσεις θερμοστοιχείων στην αντίσταση, [m]
-subsystems = 0:0.1:0.9;         % 9 υποσυστήματα της αντίστασης
+tic;                            % timing the script 
 
-tempData = zeros(11, 4, 17);    % θερμοκρασία σε βαθμούς κελσίου, [^οC]
-                                % στήλες 1-9 θερμοκρασίες αντίστασης
-                                % στήλη 10 θερμοκρασία εισόδου
-                                % στήλη 11 θερμοκρασία εξόδου
+dInner = 22 * 10 ^ -3;          % inner cylinder diameter, [m]
+dOuter = 40 * 10 ^ -3;          % outer cylinder diameter, [m]
+voltRes = 29.5;                 % voltage of resistance, [V]
+ampRes = 0.63;                  % current of reistance, [A]
+position = 0.05:0.1:0.9;        % axial positions of thermocouples, [m]
+subsystems = 0:0.1:0.9;         % nine subsystems of control volume 
+
+tempData = zeros(11, 4, 17);    % steady-state temperature measurements, [degree Celsius]
+                                % columns 1-9: resistance temperature along axial coordinate 
+                                % column 10: inlet temperature 
+                                % column 11: outlet temperature 
                                 
-timeData = zeros(1, 4, 17);     % χρόνος σε δευτερόλεπτα, [sec]
-voltFan = zeros(1, 4, 17);      % τάση ανεμιστήρα σε βολτ, [V]
-ampFan  = zeros(1, 4, 17);      % ένταση ρεύματος ανεμιστήρα σε αμπέρ, [A]
+timeData = zeros(1, 4, 17);     % time, [sec]
+voltFan = zeros(1, 4, 17);      % voltage of fan, [V]
+ampFan  = zeros(1, 4, 17);      % current of fan, [A]
 c = 0;
 
-% Εισαγωγή δεδομένων για διατάξεις βρόγχου
+% Data input for swirling-decaying flow 
 for j = 45:15:90
     for i = 1:4
         c = c + 1;
         data = importdata(+j+"Degrees"+i+"inlets.csv");
         
-        % Μετρήσεις θερμοκρασίας σε διατάξεις βρόγχου
+        % Temperature measurements 
         tempData(:, :, c) = data.data((4:14), :);
         
-        % Μετρήσεις χρόνου σε διατάξεις βρόγχου
+        % Time measurements 
         timeData(1, :, c) = data.data(3, :);
         
-        % Μετρήσεις τάσης και ρεύματος σε διατάξεις βρόγχου
+        % Volt and current measurements 
         voltFan(1, :, c) = data.data(1, :);
         ampFan(1, :, c)  = data.data(2, :);
     end
 end
 
-% Εισαγωγή δεδομένων για διάταξη αξονικής ροής
+% Data input for axial flow 
 data = importdata('Axial.csv');
 
-% Αντίστοιχες μετρήσεις για διάταξη αξονική ροής
+% Temperature, time, volt and current measurements 
 tempData(:, :, 17) = data.data((4:14), :);
 timeData(1, :, 17) = data.data(3, :);
 voltFan(1, :, 17) = data.data(1, :);
 ampFan(1, :, 17) = data.data(2, :);
 
-% Κωδικοποίηση χρωμάτων για αριθμό χρησιμοποιούμενων βρόγχων, θα
-% χρησιμοποιηθεί στα τελευταία κομμάτια του scrit, όπου θα αναπαραστούν
-% γραφικά τα δεδομένα (Nu = f(Re), P = f(Q))
-colorsErr = [140 45 4; 204 76 2;...        % 1 και 2 βρόγχοι
-             236 112 20; 254 153 41;...    % 3 και 4 βρόγχοι
-             99 99 99];                    % αξονική ροή
+% Color coding for segregating the use of various numbers of inlet slots 
+% in the upcoming plots 
+colorsErr = [140 45 4; 204 76 2;...        % one and two inlet slots 
+             236 112 20; 254 153 41;...    % three and four inlet slots 
+             99 99 99];                    % axial flow 
          
-% Τα ίδια με απο πάνω απλά με διαφορετική διαφάνεια      
+% Same as above but with different opacities
 colorsFit = [140 45 4 153; 204 76 2 153;...
              236 112 20 153; 254 153 41 153;... 
              99 99 99 153];

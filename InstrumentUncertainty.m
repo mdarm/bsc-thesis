@@ -1,7 +1,7 @@
 function [sigma] = InstrumentUncertainty(errVI, errTime, errTemp)
-% This functions estimates the total measurement error of the multimeter,
-% the timer and all eleven thermocouples. The method is known as single-
-% sample uncertainty analysis, as defined by Moffat [2]
+% InstrumentUncertainty() estimates the total measurement error of the 
+% multimeter, the timer and all eleven thermocouples. The method is known 
+% as signle-sample-uncertainty analysis, as defined by Moffat [2]
 
 % Bibliography 
 %   [1] Hugh W. Coleman, W. Glenn Steele Experimentation, Validation,

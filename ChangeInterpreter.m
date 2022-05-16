@@ -1,6 +1,7 @@
 function ChangeInterpreter(h, Interpreter)
-% ChangeInterpreter changes the interpreter of figure h
+% ChangeInterpreter() changes the interpreter of figure h
 
+    % Find all string type objects
     TexObj = findall(h, 'Type', 'Text');
     LegObj = findall(h, 'Type', 'Legend');
     AxeObj = findall(h, 'Type', 'Axes');  

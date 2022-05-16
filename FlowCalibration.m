@@ -1,15 +1,15 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-% Δημιουργία γραφημάτων όπου απεικονίζονται οι αποκλίσεις, για διάφορα εύρη
-% τιμών παροχής, μεταξύ προτύπου (θερμό νήμα) και του χρηστιμοποιηθέντος 
-% μετρητικού (μετρητής θετικής μετατόπισης).
+% Volumetric flow meter calibration defects when compared with hot-wire
+% anemometry; two sets of paired values were incorporated into the present
+% experiment
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Προσδιορισμός θέσης του εν λόγω αρχείου 
+% Returns the full path of the current script 
 folder = fileparts( which(mfilename) ); 
 
-% Προσθήκη όλων των υποφακέλων 
+% Adds all subdirectories 
 addpath( genpath(folder) );
 
 for j = 1:2
@@ -30,6 +30,7 @@ for j = 1:2
     flowmQ = data(7, :);
     y = zeros(1, 8);
 
+    % relative error
     for i = 1:8
         relEr(i) = (flowmQ(i) - anemQ(i))/anemQ(i) * 100
     end
