@@ -1,33 +1,33 @@
 function [c, c_sig, stats, eqn] = LeastSquaresFit(xdata, ydata, xerr, yerr, model)
-% Συνάρτηση γραμμικής παρεμβολής, χρησιμοποιώντας τη μέθοδο Ελαχίστων
-% Τετραγώνων, λαμβάνοντας υπόψη αβεβαιότητες και των δύο μεταβλητών $(x_i, y_i)$.
-% Για μη γραμμικά μοντέλα της μορφής $y = \alpha x ^ {\beta}$, προηγείται
-% γραμμικός μετασχηματισμός.
+% LeastSquaresFit() fits the data on a line using the least squares method. The 
+% errors of both variables are taken into account. 
+% For non-linear fits, i.e. of the form y = ax^b, a linear transformation is  
+% performed a priori. So, in a sense, in these special cases, the fit is not a
+% least squares fit but an approximation.
 
-% O κώδικας είναι μια προέκταση της συνάρτησης
+% This code is an extenstion of: 
 % https://github.com/tamaskis/lsqcurvefit_approx-MATLAB
-%
-% Σχετική βιβλιογραφία:
+
+% Bibliography:
 %   [1] Hugh W. Coleman, W. Glenn Steele Experimentation, Validation,
-%       and Uncertainty Analysis for Engineers, σελ. 246 
-%
+%       and Uncertainty Analysis for Engineers, p. 246 
+
 %   [2] Bevington, Philip R. / Robinson, D. Keith 
-%       Data Reduction and Error Analysis for the Physical Sciences, σελ. 102
-%
+%       Data Reduction and Error Analysis for the Physical Sciences, p. 102
+
 %   [3] Taylor, John R. Introduction to Error Analysis, The Study of Uncertainties
-%       in Physical Measurements, σελ. 181
-%
+%       in Physical Measurements, p. 181
+
 %   [4] Linearizing the Equation. MacEwan University Physics Laboratories.
 %       \textrm{https://academic.macewan.ca/physlabs/Linearization.pdf} (accessed: October 31, 2021).
-%
+
 %   [5] Linear Models (Stat 305a). Stanford University.
 %       \textrm{https://statweb.stanford.edu/~owen/courses/305a/ch2.pdf}
 %       (accessed: October 31, 2021).
-%
-%   [6] Lyons, Louis A Practical Guide to Data Analysis for Physical Science Students,
-%       σελ. 44 
+
+%   [6] Lyons, Louis A Practical Guide to Data Analysis for Physical Science Students, p. 44 
     
-    % αναστροφή πινάκων (αν χρειαστεί)
+    % reverse the vector data (if needed) 
     if size(xdata, 1) < length(xdata)
         xdata = xdata(:);
     end
@@ -41,44 +41,44 @@ function [c, c_sig, stats, eqn] = LeastSquaresFit(xdata, ydata, xerr, yerr, mode
         yerr = yerr(:);
     end
     
-    % αυτόματη επιλόγη
+    % default fit 
     if nargin == 4
         model = 'linear';
     end
     
-    % συνεισφορά αβεβαιότητας x (xerr) στη συνολική αβεβαιότητα του y (sigma)
+    % error contribution of x (xerr) to the total uncertainty y (sigma)
     show_warning = false;
     if strcmpi(model, 'linear')
         X       = [ones( size(xdata) ) xdata];
         a_fit   = X \ ydata; 
-        sigmaTr = abs( a_fit(2) ) * xerr; % $\sigma_{tra} = |\sigma_x| \frac{d (mx + b)}{d x}$
-        sigma   = sqrt(yerr .^ 2 + sigmaTr .^ 2); % συνολικό σφάλμα
-    % γραμμικός μετασχηματισμός    
+        sigmaTr = abs( a_fit(2) ) * xerr; % absolute value of the derivative of y = mx + b
+        sigma   = sqrt(yerr .^ 2 + sigmaTr .^ 2); % total error 
+
+    % linear transformation    
     elseif strcmpi(model, 'power')
         if (sum(xdata < 0) > 0) || (sum(ydata < 0) > 0),...
                 show_warning = true; end
-        yerr    = yerr./ydata; % $\sigma_{lny} = |\sigma_y| \frac{d (lny)}{d y}$
-        xerr    = xerr./xdata; % $\sigma_{lnx} = |\sigma_x| \frac{d (lnx)}{d x}$
+        yerr    = yerr./ydata;  
+        xerr    = xerr./xdata;  
         xdata   = real( log(xdata) );
         ydata   = real( log(ydata) );
         X       = [ones( size(xdata) ) xdata];
         a_fit   = X \ ydata;
-        sigmaTr = abs( a_fit(2) ) * xerr; % $\sigma_{tra} = |\sigma_x| \frac{d (mx + b)}{d x}$
+        sigmaTr = abs( a_fit(2) ) * xerr; %
         sigma   = sqrt(yerr .^ 2 + sigmaTr .^ 2);
     end
     
-    % προειδοποίηση αν τα στοιχεία των δεδομένων είναι αρνητικά με το πέρας
-    % του γραμμικού μετασχηματισμού
+    % warning in case the linearised data points are negative 
     if show_warning
         warning("One or more linearized data points were complex. "+...
             "To proceed, only the real part of these points were used.");
     end
 
-    % προσδιορισμός αριθμού δεδομένων και δημιουργία πίνακα αβεβαιότητας
+    % pairs of data and creating the error matrix 
     M = length(ydata);
     b = ydata ./ sigma;
     
-    % δημιουργία Χ πίνακα
+    % create X matrix 
     X = zeros(M, 2);
     for i = 1:M
         for j = 1:2
@@ -86,19 +86,19 @@ function [c, c_sig, stats, eqn] = LeastSquaresFit(xdata, ydata, xerr, yerr, mode
         end
     end
     
-    % δημιουργία πίνακα συσχέτισης
+    % correlation matrix 
     Corr = inv(X' * X);
     
-    % λύση ελαχίστων τετραγώνων γραμμικού συστήματος (βλ. [5])
+    % solution to least square problem (see [5])
     a_hat = X\b;
     
-    % αβεβαιότητα συντελεστών γραμμικής παρεμβολής
+    % uncertainties of linear fit coefficients 
     c_sig = zeros(2, 1);
     for j = 1:2
         c_sig(j) = sqrt( Corr(j, j) );
     end
     
-    % τιμές υπολογισθείσας συνάρτησης
+    % values of fitted data 
     func = zeros(length(xdata), 1);
     for i = 1:2
         func = func + a_hat(i) * xdata .^ (i-1);
@@ -106,14 +106,14 @@ function [c, c_sig, stats, eqn] = LeastSquaresFit(xdata, ydata, xerr, yerr, mode
     
     y_bar = mean(ydata);
     
-    % στατιστικά γραμμικής παρεμβολής
+    % statistics of linear fit 
     SS_tot = sum( ((ydata - y_bar) ./ sigma) .^ 2 );
     chisqr = sum( ((ydata - func) ./ sigma) .^ 2 );
     rsqr = 1 - (chisqr/SS_tot);
     rmse = sqrt( sum( ((ydata - func) .^ 2) / M ) );
     stats = [rsqr, chisqr, rmse];
     
-    % συντελεστές γραμμικής παρεμβολής
+    % linear fit coefficients 
     if strcmpi(model, 'linear')
         m = a_hat(2);
         b = a_hat(1);
@@ -129,7 +129,7 @@ function [c, c_sig, stats, eqn] = LeastSquaresFit(xdata, ydata, xerr, yerr, mode
         c = [a;b];
     end
     
-    % αποθήκευση μορφής συναρτήσεων
+    % fitted equations 
     if strcmpi(model, 'linear')
         if b >= 0
             eqn = "$y="+M+"x"+"+"+b+"$";

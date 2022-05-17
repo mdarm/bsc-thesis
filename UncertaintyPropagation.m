@@ -16,7 +16,7 @@ valCells = num2cell(vals);
 N = numel(valCells);
 value = func(valCells{:});
 
-% Creating the Jacobin matrix 
+% Creating the Jacobian matrix 
 jacob = zeros(1, N);
 for i = 1:N
     if(uncerts(i) == 0)
