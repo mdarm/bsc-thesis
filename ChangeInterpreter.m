@@ -14,7 +14,6 @@ function ChangeInterpreter(h, Interpreter)
     end
     
     Obj = [AxeObj; ColObj]; % Axes and ColorBar objects can be treated similarly 
-    
     n_Obj = length(Obj);
     for i = 1:n_Obj
         Obj(i).TickLabelInterpreter = Interpreter;
