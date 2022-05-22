@@ -78,41 +78,41 @@ colorsFit = [140 45 4 153; 204 76 2 153;...
              236 112 20 153; 254 153 41 153;... 
              99 99 99 153];
 
-%% Aβεβαιότητες δεδομένων
+%% Errors associated with data 
 
 [sigma] = InstrumentUncertainty('errorVI.csv', 'errorTime.csv',...
     'errorTemp.xlsx');
 
-% Συνολική αβεβαιότητα κάθε θερμοστοιχείου
+% Total error of each and every temperature measurements 
 uTemp = table2array(sigma.temp);
 uTemp = uTemp(1:11);
 
-% Συνολική αβεβαιότητα μετρήσεων τάσης και έντασης
+% Total error of Voltage and Current measurements 
 uAmp = sigma.amp;
 uVolt = sigma.volt;
 
-% Συνολική αβεβαιότητα χρονομέτρου
+% Total error of time measurements 
 uTime = sigma.time;
 
-% Συνολική αβεβαιότητα διαστάσεων (σφάλμα ευαισθησίας ουσιαστικά)
+% Total error of dimensions' measurements (sensitivity) 
 uDim = 0.5 * 10 ^ -3;
 
-% Αβεβαιότητα ειδικής θερμότητας αέρα (σφάλμα εύρους)
+% Uncertainty of specific heat of air (due to correlation) 
 uCp = 0.001;
 
-%% Θερμοκρασιακή ομοιογένεια
+%% Temperature homogeneity 
 
-% Αντιπροσωπευτικές μέσες τιμές και τυπικές αποκλίσεις για κάθε διάταξη
+% Globally averaged temperature values and their standard deviations 
 TempStd  = zeros(1, 4, 17);
 TempMean = zeros(1, 4, 17);
 ApparStd = zeros(1, 1, 17);
 ApparMean = zeros(1, 1, 17);
 
-% Aκρότατες τιμές εφ όλων των δεδομένων για κοινό colobar
+% Min and Max values of all temperature data 
 minColorLimit = min( min( min(tempData) ) );
 maxColorLimit = max( max( max(tempData) ) );
 
-% Θερμοκρασιακή ομοιογένεια και γραφήματα κυλίνδρων αξονικής ροής
+% Temperature homogeneity and cylinder colormps for axial flow 
 for i = 1:4
    figure(i);
    dummydata = tempData(1:9, i, 17)';
@@ -140,7 +140,7 @@ end
 ApparStd(1, 1, 17) = mean( TempStd(1, :, 17) );
 ApparMean(1, 1, 17) = mean( TempMean(1, :, 17) );
 
-% Θερμοκρασιακή ομοιογένεια και γραφήματα κυλίνδρων για περιδινούμενες ροές
+% Temperature homogeneity and cylinder colormaps for swirling decaying flows 
 for k = 1:16
     for i = 1:4
         figure('Name', +i+"in"+k+"case");
@@ -168,24 +168,24 @@ for k = 1:16
     ApparMean(1, 1, k) = mean( TempMean(1, :, k) );
 end
 
-% Προετοιμασία μεταβλητών για εύρεση σχετικών τιμών
+% Variables for relative values 
 apparatusMean(:, 1) = ApparMean(1, 1, :);
 axialMean(:, 1) = ApparMean(1, 1, 17) * ones(17, 1);
 
-% Σχετική μέση θερμοκρασία
+% Relative mean temperature 
 relmean = apparatusMean - axialMean;
 
-% Σχετική τυπική απόκλιση
+% Relative standard deviation of axial flow 
 apparatusStd(:, 1) = ApparStd(1, 1, 1:16);
 axialStd = ApparStd(1, 1, 17);
 
-% Σχετικές τυπικές αποκλίσεις θερμοκρασίας
+% Relative standard deviations of swirling flows 
 lci = relmean(1:16, 1) - apparatusStd;
 lci(17, 1) = -axialStd;
 uci = relmean(1:16, 1) + apparatusStd;
 uci(17, 1) = axialStd;
 
-% Το σύμβολο \$ μπαίνουν διότι το αρχείο θα επεξεργαστεί με LaTeX
+% Save data for easy implementation in LaTeX tikz table 
 name = {
         '$45-1$', '$45-2$', '$45-3$', '$45-4$',...
         '$60-1$', '$60-2$', '$60-3$', '$60-4$',...
@@ -198,37 +198,37 @@ colNames = {'name', 'mean', 'lci', 'uci'};
 relData = table(name, round(relmean, 2), round(lci, 2),...
     round(uci, 2), 'Variablenames', colNames);
 
-% Δημιουργία αρχείου δεδομένων data.txt για περαιτέρω επεξεργασία
+% Save results in data.txt 
 writetable(relData, 'data.txt', 'Delimiter', 'tab');
 
 %% Heat-transfer evaluation
 
-Reynolds = zeros(1, 4, 17);       % Reynolds, [αδιάστατο]
-ReynoldsErr = zeros(1, 4, 17);    % Σφάλμα Reynolds, [αδιάστατο]
-Nusselt = zeros(9, 4, 17);        % Τοπικός Nusselt, [αδιάστατο]
-NusseltAvg = zeros(1, 4, 17);     % Μέσος Nusselt, [αδιάστατο]
-NusseltErr = zeros(9, 4, 17);     % Σφάλμα τοπικού Nusselt, [αδιάστατο]
-NusseltAvgErr = zeros(1, 4, 17);  % Σφάλμα μέσου Nusselt, [αδιάστατο]
-relThermal = zeros(1, 1, 17);     % Ανηγμένος Nusselt, [αδιάστατο]
-relThermalErr = zeros(1, 1, 17);  % Σφάλμα ανηγμένου Nusselt, [αδιάστατο]
-thermalEn = zeros(1, 4, 17);      % Θερμική ισχύς, [Watt]
-thermalEnErr = zeros(1, 4, 17);   % Σφάλμα θερμικής ισχύος, [Watt]
-thermcoupl = zeros(9, 4, 17);    % Διαφορά θερμοκρασιών
+Reynolds = zeros(1, 4, 17);       % Reynolds, [dimensionless]
+ReynoldsErr = zeros(1, 4, 17);    % Reynolds Error, [dimensionless]
+Nusselt = zeros(9, 4, 17);        % Local Nusselt, [dimensionless]
+NusseltAvg = zeros(1, 4, 17);     % Mean Nusselt, [dimensionless]
+NusseltErr = zeros(9, 4, 17);     % Local Nusselt Error, [dimensionless]
+NusseltAvgErr = zeros(1, 4, 17);  % Mean Nusselt Error, [dimensionless]
+relThermal = zeros(1, 1, 17);     % Normalised Nusselt, [dimensionless]
+relThermalErr = zeros(1, 1, 17);  % Normalised Nusselt Error, [dimensionless]
+thermalEn = zeros(1, 4, 17);      % Thermal Power, [Watt]
+thermalEnErr = zeros(1, 4, 17);   % Thermal Power Error, [Watt]
+thermcoupl = zeros(9, 4, 17);     % Temperature Difference, [degrees Celsius] 
 
-% Θερμική αγωγιμότητα (W/m K) - εξίσωση Kannuluik
+% Thermal conductivity (W/m K) - Kannuluik empirical relation
 kappa = @(T) 5.75e-5 * (1 + 317e-5 * T - 21e-7 * T^2) * 418.4; 
 
-% Πυκνότητα (kg/m^3) - νόμος ιδανικών αερίων
+% Density (kg/m^3) - ideal gass law 
 rho = @(T) 1.02e5 / (287.05 * (T + 273.15));
 
-% Δυναμικό ιξώδες (kg/m s) - εξίσωση Sutherland 
+% Dynamic viscosity (kg/m s) - Sutherland empirical relation
 mu = @(T) 1.716e-5 * ((T + 273.15) / 273.15) ^ (3 / 2) *...
     ((273.15 + 110.56) / (T + 110.56 + 273.15));
 
-% Ειδική θερμότητα (μέση τιμή για 50 Κ διαφορά)
+% Specific heat (mean value for 50 K difference)
 Cp = 1.008;
 
-% Προετοιμασία "παλέτας" για γραφήματα
+% Palette for graphs 
 name = {
     'Nu = f(Re) 45deg',...
     'Nu = f(Re) 60deg',...
@@ -243,42 +243,42 @@ for i =1:4
     hold on;
 end
 
-% Συνάρτηση υπολογισμού παροχής
+% Flow rate equations 
 flowFunc = @(time) 0.1 / time;
 
-% Συνάρτηση υπολογισμού αριθμού Reynolds
+% Reynolds equations 
 Re = @(Q, density, dviscosity, dOuter, dInner) 4 * Q * density /...
     (pi * dviscosity * (dOuter + dInner));
 
-% Συνάρτηση υπολογισμού συντελεστή μετάδοσης θερμότητας
+% Convective heat transfer coefficient equation 
 h = @(voltRes, ampRes, dInner, Tres, Tair) voltRes * ampRes /...
     (pi * dInner * 0.1 * (Tres - Tair));
 
-% Συνάρτηση υπολογισμού τοπικού αριθμού Nusselt
+% Local Nusselt number equation 
 Nu = @(h, dOuter, dInner, kappa) h * (dOuter - dInner) / kappa;
 
-% Συνάρτηση υπολογισμού θερμικής ενέργειας
+% Thermal energy equation 
 Qen = @(rho, flow, Cp, Tout, Tin) rho * flow * Cp * (Tout - Tin);
 for k = 1:17
     for i = 1:4
         [flowrate, uflowrate] = UncertaintyPropagation(flowFunc,...
             timeData(1, i, k), uTime);
         
-        % Θερμοδυναμικές ιδιότητες αέρα για Tavg
+        % Thermophysical properties of air at Tavg
         tfunc = @(Tin, Tout) (Tin + Tout) / 2;
         
         [Tavg, uTavg] = UncertaintyPropagation(tfunc,...
             [tempData(10, i, k) tempData(11, i, k)],...
             [uTemp(10, 1) uTemp(11, 1)]);
         
-        % Πυκνότητα
+        % Density 
         [density, udensity] = UncertaintyPropagation(rho, Tavg, uTavg);
-        % Δυναμικό ιξώδες
+        % Dynamic viscosity 
         [dviscosity, udviscosity] = UncertaintyPropagation(mu, Tavg, uTavg);
-        % Θερμική αγωγιμότητα
+        % Thermal conductivity 
         [tcond, utcond] = UncertaintyPropagation(kappa, Tavg, uTavg);
         
-        % Θερμική ενέργεια
+        % Thermal energy 
         [thermalEn(1, i, k), thermalEnErr(1, i, k)] =...
             UncertaintyPropagation(Qen,...
             [density flowrate Cp tempData(11, i, k) tempData(10, i, k)],...
@@ -290,7 +290,7 @@ for k = 1:17
             [flowrate density dviscosity dOuter dInner],...
             [uflowrate udensity udviscosity uDim uDim]);
         
-        % Προσδιορισμός θερμοκρασίας αέρα
+        % Determining the axial temperature of air 
         [const, uconst] = LeastSquaresFit([0 0.9],...
             [tempData(10, i, k) tempData(11, i, k)],...
             [0 0], [uTemp(10, 1) uTemp(11, 1)], 'linear');
@@ -298,7 +298,7 @@ for k = 1:17
         Tair = const(1) * position + const(2);
         uTair = sqrt( (position .* uconst(1)) .^ 2 + uconst(2) ^ 2 );
         for j =1:9
-            % Συντελεστή συναγωγής
+            % Convective heat transfer coefficient 
             Tres = tempData(j, i, k);
             uTres = uTemp(j, 1);
             
@@ -306,7 +306,7 @@ for k = 1:17
                 [voltRes ampRes dInner Tres Tair(j)],...
                 [uVolt uAmp uDim uTres uTair(j)]);
             
-            % Τοπικός Nusselt
+            % Local Nusselt 
             [Nusselt(j, i, k), NusseltErr(j, i, k)] =...
                 UncertaintyPropagation(Nu,...
                 [htc dOuter dInner tcond],...
@@ -314,7 +314,7 @@ for k = 1:17
             
                 thermcoupl(j, i, k) = Tres - Tair(j);
         end
-        % Μέσοι Nusselt
+        % Mean Nusselt
         [wmean, wvar, wstd, weights] =...
             WeightedVariance(Nusselt(:, i, k), NusseltErr(:, i, k));
         
@@ -331,13 +331,13 @@ for k = 1:17
     [cc, cerrr, statt] = LeastSquaresFit(reynolds, nusselt,...
         reynoldserr, nusselterr, 'power');
     
-    % Όρια οριζοντίου άξονα
+    % Plotting limits (horizontal axis) 
     rFit = linspace(1000, 2000, 1000);
 
-    % Υπολογισθείσες τιμές ισχύος
+    % Power values 
     nFit = cc(1) * rFit .^ cc(2);
     
-    % Κατασκευή διαγραμμάτων
+    % Visualisations 
     if k <= 4
         a = k;
         handles(1).hE{k} = errorbar(handles(1).hAxes{1}, reynolds, nusselt,...
@@ -377,12 +377,11 @@ for k = 1:17
         end
     end
  
-    % Αποθήκευση δεδομένων παρεμβολών
+    % Fitting statistical data 
     stats(1).c(k, :) = cc'; stats(1).cerr(k, :) = cerrr';
     stats(1).stat(k, :) = statt;
     
-    % Υπολογισμός μέσου Nusselt, και του αντίστοιχου σφάλματος, για κάθε
-    % διάταξη
+    % Calculating the average Nusselt its propagated error
     g1 = fit(reynolds', nusselt', 'power1');
     a = g1.a;
     b = g1.b;
@@ -410,8 +409,7 @@ latextbl1 = [stats(1).c(:, 1) stats(1).cerr(:, 1) stats(1).c(:, 2) stats(1).cerr
 nussavg(:, 1) = relThermal(1, 1, 1:16);
 nussavg(:, 2) = relThermalErr(1, 1, 1:16);
 
-% Ποσοστιαία μεταβολή μέσων Nusselt διατάξεων βρόγχου, συγκριτικά με τον
-% αντίστοιχο της διάταξης αξονικής ροής
+% Heat improvement index 
 swirlNu(:, 1) = relThermal(1, 1, 1:16);
 swirlNu(:, 2) = relThermalErr(1, 1, 1:16);
 axialNu(1, 1) = relThermal(1, 1, 17);
@@ -468,15 +466,15 @@ ChangeInterpreter(handles(1).hFig{5}, 'latex');
 
 %% Fan-power-consumption evaluation
 
-wattFan = zeros(1, 4, 17);       % Ισχύς σε Watt, [W]
-wattFanErr = zeros(1, 4, 17);    % Σφάλμα ισχύος, [W]
-relWattFan = zeros(1, 1, 17);    % Ανηγμένη ισχύς, [αδιάστατο]
-relWattFanErr = zeros(1, 1, 17); % Σφάλμα ανηγμένης ισχύος, [αδιάστατο]
+wattFan = zeros(1, 4, 17);       % Fan Power, [W]
+wattFanErr = zeros(1, 4, 17);    % Fan Power Error, [W]
+relWattFan = zeros(1, 1, 17);    % Normalised Fan Power, [dimensionless]
+relWattFanErr = zeros(1, 1, 17); % Normalised Fan Power Error, [dimensionless]
 
-flowFan = zeros(1, 4, 17);       % Παροχή, [m^3/s]
-flowFanErr = zeros(1, 4, 17);    % Σφάλμα παροχής, [m^3/s]
+flowFan = zeros(1, 4, 17);       % Flow Rate, [m^3/s]
+flowFanErr = zeros(1, 4, 17);    % Flow Rate Error, [m^3/s]
 
-% Προετοιμασία "παλέτας" για γραφήματα
+% Palette for graphs  
 name = {
     'P = f(Q) 45deg',...
     'P = f(Q) 60deg',...
@@ -491,10 +489,10 @@ for i =1:4
     hold on;
 end
 
-% Συνάρτηση υπολογισμού ισχύος
+% Fan Power equation 
 wattFunc = @(voltFan, ampFan) voltFan * ampFan;
 
-% Συνάρτηση υπολογισμού παροχής
+% Flow Rate equation 
 flowFunc = @(time) 0.1 / time;
 
 for k = 1:17
@@ -517,13 +515,13 @@ for k = 1:17
     [cc, cerrr, statt] = LeastSquaresFit(flowdata,...
         wattdata, flowerr, watterr, 'power');
     
-    % Όρια οριζοντίου άξονα
+    % Plotting limits (horizontal axis) 
     qFit = linspace(0.0008, 0.0016, 1000);
 
-    % Υπολογισθείσες τιμές ισχύος
+    % Calculated Power values 
     pFit = cc(1) * qFit .^ cc(2);
     
-    % Κατασκευή διαγραμμάτων
+    % Visualisation
     if k <= 4
         a = k;
         handles(2).hE{k} = errorbar(handles(2).hAxes{1}, flowdata, wattdata,...
@@ -563,12 +561,11 @@ for k = 1:17
         end
     end
  
-    % Αποθήκευση δεδομένων παρεμβολών
+    % Plottings statistics 
     stats(2).c(k, :) = cc'; stats(2).cerr(k, :) = cerrr';
     stats(2).stat(k, :) = statt;
     
-    % Υπολογισμός μέσης ισχύος, και του αντίστοιχου σφάλματος, για κάθε
-    % διάταξη
+    % Average power consumption and its error 
     g1 = fit(flowdata', wattdata', 'exp1');
     a = g1.a;
     b = g1.b;
@@ -595,8 +592,7 @@ end
 pwavg(:, 1) = relWattFan(1, 1, 1:16); 
 pwavg(:, 2) = relWattFanErr(1, 1, 1:16);
 
-% Ποσοστιαία μεταβολή ισχύος διατάξεων, συγκριτικά με την αντίστοιχη της
-% διάταξης αξονικής ροής
+% Power improvement index 
 swirlpower(:, 1) = relWattFan(1, 1, 1:16);
 swirlpower(:, 2) = relWattFanErr(1, 1, 1:16);
 axialpower(1, 1) = relWattFan(1, 1, 17);
@@ -650,7 +646,7 @@ end
 PlotDimensions(handles(2).hFig{5}, 'centimeters', [15.747, 8], 12);
 ChangeInterpreter(handles(2).hFig{5}, 'latex');
 
-%% Αισθητική και ευπαρουσίαστα γραφήματα
+%% Publication quality graphs and aesthetics considerations 
 
 n_hE = length(handles(2).hE);
 for i = 1:n_hE
@@ -664,7 +660,7 @@ end
 n_hFig = length(handles(1).hFig) - 1;
 for i = 1:n_hFig
     for k = 1:2
-        % Ίδια όρια για όλα τα γραφήματα
+        % Same limits throughout 
         hor_lim = {[1000 2000] [8.0000e-04 0.0016]};
         vert_lim = {[80 200] [0 40]};
         set(handles(k).hAxes{i}, 'XLim', hor_lim{k}, 'YLim', vert_lim{k},...
@@ -672,14 +668,14 @@ for i = 1:n_hFig
                     'TickDir', 'out', 'TickLength', [.02 .02],...
                     'LineWidth', 1, 'XColor', [.3 .3 .3],...
                     'YColor', [.3 .3 .3], 'YGrid', 'on');
-        % Υπόμνημα
+        % Caption 
         legend(handles(k).hAxes{i}, [handles(k).hE{1}, handles(k).hP{17},...
                     handles(2).hP{1:4}], 'Data ({$\it\mu$} $\pm$ {$\it\sigma$})',...
                     'axial flow', '1 inlet', '2 inlets', '3 inlets', '4 inlets',...
                     'Location', 'NorthOutside', 'Orientation', 'horizontal',...
                      'NumColumns', 3);
               
-        % Ονομασία αξόνων
+        % Axes name 
         if k == 1
             xlabel(handles(k).hAxes{i}, 'Re');
             ylabel(handles(k).hAxes{i}, '$\bar{Nu}$');
@@ -695,13 +691,11 @@ end
 
 %% Potential energy efficiency index
 
-% Ποσοστιαία μεταβολή, συγκριτικά με
-% την αντίστοιχη της διάταξης αξονικής ροής
-
+% Potential energy efficiency 
 potentialEn = zeros(1, 1, 17);
 potentialEnErr = zeros(1, 1, 17);
 
-%Συνάρτηση ωφέλιμου δυναμικού
+% Potential energy equation
 pee = @(Q, W) Q / W;
 
 for k = 1:17
@@ -766,10 +760,10 @@ end
 PlotDimensions(handles(1).hFig{6}, 'centimeters', [15.747, 8], 12);
 ChangeInterpreter(handles(1).hFig{6}, 'latex');
 
-toc;                        % λήξη χρονομέτρησης κώδικα
+toc;                        % end code timer 
 runningTime = toc;
 
-%% Αποθήκευση αποτελεσμάτων στο αρχείο results.txt
+%% Save results in results.txt
 
 res = fopen('results.txt', 'w'); 
 disp('Results printed in the file: results.txt ');
@@ -800,14 +794,12 @@ for i = 1:4
    latexnu(i, 2:2:end) = nussavg(1+c:4+c, 2);
 end
 
-%latexnu = [nussavg(1:4, 1) nussavg(1:4, 2) nussavg(5:8, 1) nussavg(5:8, 2) nussavg(9:12, 1) nussavg(9:12, 2) nussavg(13:16, 1) nussavg(13:16, 2)];
 fprintf(res, '------------------------------------------------------ \n');
 fprintf(res, 'Average Nusselt numbers; rows: angle degrees, columns: number of inlets\n \n');
 fprintf(res, '& %5.2f & %5.2f && %5.2f & %5.2f && %5.2f & %5.2f && %5.2f & %5.2f \\\\ \n', latexnu');
 fprintf(res, '\n');
 
-% Τύπωμα αποτελεσμάτων για μεταφορά σε LaTeX
-%latexpw = [pwavg(1:4, 1) pwavg(1:4, 2) pwavg(5:8, 1) pwavg(5:8, 2) pwavg(9:12, 1) pwavg(9:12, 2) pwavg(13:16, 1) pwavg(13:16, 2)];
+% Print results in way a LaTeX-friendly way
 fprintf(res, '------------------------------------------------------ \n');
 fprintf(res, 'Average Power values; rows: angle degrees, columns: number of inlets\n \n');
 fprintf(res, '& %5.2f & %5.2f && %5.2f & %5.2f && %5.2f & %5.2f && %5.2f & %5.2f \\\\ \n', latexpw');
@@ -819,14 +811,12 @@ fprintf(res, 'Thermal improvement index; rows: angle degrees, columns: number of
 fprintf(res, '& %5.2f & %5.2f && %5.2f & %5.2f && %5.2f & %5.2f && %5.2f & %5.2f \\\\ \n', latextbl');
 fprintf(res, '\n');
 
-
 latextbl = [power(:, 1) powererr(:, 1) power(:, 2) powererr(:, 2) power(:, 3) powererr(:, 3) power(:, 4) powererr(:, 4)];
 fprintf(res, '------------------------------------------------------ \n');
 fprintf(res, 'Power improvement index; rows: angle degrees, columns: number of inlets \n \n');
 fprintf(res, '& %5.2f & %5.2f && %5.2f & %5.2f && %5.2f & %5.2f && %5.2f & %5.2f \\\\ \n', latextbl');
-fprintf(res, '\n');
 
-% Τύπωμα αποτελεσμάτων για μεταφορά σε LaTeX
+% Print results in way a LaTeX-friendly way
 latextbl = [therm(:, 1) thermerr(:, 1) therm(:, 2) thermerr(:, 2) therm(:, 3) thermerr(:, 3) therm(:, 4) thermerr(:, 4)];
 fprintf(res, '------------------------------------------------------ \n');
 fprintf(res, 'Potential efficiency index; rows: angle degrees, columns: number of inlets \n \n');
