@@ -1,5 +1,5 @@
 # Source code for the B.Sc. thesis
-This repository contains the MATLAB source code for the thesis entitled: *Experimental study of swirl flow and heat transfer in concentric cylinders with tangential inlet flow*. It is an experimental research study of confined air flow which estimates the heat transfer enhancement under various flow conditions. The results of the computation are given in two files: `results.txt` and `data.txt`, both of which have been formatted in a way that greatly simplifies their implementation in a LaTeX document (i.e. tables and tikz figures). 
+This repository contains the MATLAB source code for the thesis entitled: *Experimental study of swirl flow and heat transfer in concentric cylinders with tangential inlet flow*. It is an experimental research study of confined air flow which estimates the heat transfer enhancement under various flow conditions. The results of the computation are given in two files: [results.txt](outputs/results.txt) and [data.txt](outputs/data.txt), both of which have been formatted in a way that greatly simplifies their implementation in a LaTeX document (i.e. tables and tikz figures). 
 
 ## Prerequisites
 
@@ -31,6 +31,14 @@ A few other toolboxes have been invoked in the code and have been incorporated f
 
 The `raw data` directory contains two sub-directories: `error estimate` and `flow results`. The first contains the actuality data collected for determining the uncertainty of each sensor (using [single-sample-uncertainty analysis](https://doi.org/10.1115/1.3242452)), while the second contains the experimental flow data (i.e. temperature, power supply and time measurements). 
 
+### latex
+
+The `LaTeX` code for the [thesis](latex/thesis.pdf) report. The rendering process is automated using the [compile-thesis-windows.bat](latex/compile-thesis-windows.bat) file.
+
+### outputs
+
+The calculations' results; i.e. files `results.txt` and `data.txt`.
+
 ## Running the code
 
 For a quick tryout, just open `EgregiousDataPadding.m`, run it, and see what figures and results it comes up with. This should work regardless of the MATLAB's directory, as the script has instructions to cd() to the directory it is to work in.
@@ -43,4 +51,4 @@ $ cd /path/to/EgregiousDataPadding.m # add directory of script
 $ matlab -nodesktop -nosplash -r "EgregiousDataPadding" # invoke MATLAB
 ```
 
-Lastly, for computing only the numerical results (i.e. acquiring only the `results.txt` and `data.txt`, without any plots), double click on `compile-code-windows.bat`
+Lastly, for computing only the numerical results (i.e. acquiring only the `results.txt` and `data.txt`, without any plots), double click on [compile-code-windows.bat](compile-code-windows.bat)
