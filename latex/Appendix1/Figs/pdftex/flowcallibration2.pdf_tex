@@ -1,0 +1,91 @@
+%% Creator: Inkscape 1.0 (4035a4fb49, 2020-05-01), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'flowcallibration2.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{446.25bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.60471109)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{flowcallibration2.pdf}}%
+    \put(0.19837563,0.14678387){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}2\end{tabular}}}}%
+    \put(0.29139294,0.14678387){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}3\end{tabular}}}}%
+    \put(0.38441008,0.14678387){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}4\end{tabular}}}}%
+    \put(0.47742739,0.14678387){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}5\end{tabular}}}}%
+    \put(0.57044471,0.14678387){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}6\end{tabular}}}}%
+    \put(0.66346185,0.14678387){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}7\end{tabular}}}}%
+    \put(0.75647916,0.14678387){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}8\end{tabular}}}}%
+    \put(0.8494963,0.14678387){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}9\end{tabular}}}}%
+    \put(0.51680706,0.10958504){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Ογκομετρική Παροχή Αέρα $[m^3/s]$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{flowcallibration2.pdf}}%
+    \put(0.11955176,0.17076151){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}-40\end{tabular}}}}%
+    \put(0.11955176,0.26740017){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}-20\end{tabular}}}}%
+    \put(0.11955176,0.36403882){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}0\end{tabular}}}}%
+    \put(0.11955176,0.46067748){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}20\end{tabular}}}}%
+    \put(0.11955176,0.55731614){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}40\end{tabular}}}}%
+    \put(0.04358538,0.37277849){\rotatebox{90}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Σχετικό Σφάλμα [\%]\end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{flowcallibration2.pdf}}%
+    \put(0.65378151,0.51804622){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Μετρητής παροχής\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{flowcallibration2.pdf}}%
+    \put(0.65378151,0.48230034){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Θερμό νήμα\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{flowcallibration2.pdf}}%
+    \put(0.19624438,0.05041422){\color[rgb]{0.14901961,0.14901961,0.14901961}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}261\end{tabular}}}}%
+    \put(0.28633615,0.0504142){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}391\end{tabular}}}}%
+    \put(0.37642808,0.0504142){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}521\end{tabular}}}}%
+    \put(0.46651983,0.0504142){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}652\end{tabular}}}}%
+    \put(0.55661176,0.0504142){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}782\end{tabular}}}}%
+    \put(0.64670353,0.0504142){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}912\end{tabular}}}}%
+    \put(0.73679546,0.0504142){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}1043\end{tabular}}}}%
+    \put(0.82688723,0.0504142){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}1173\end{tabular}}}}%
+    \put(0.12713796,0.0504142){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}203\end{tabular}}}}%
+    \put(0.90335118,0.0504142){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}1196\end{tabular}}}}%
+    \put(0.51355457,0.00540966){\color[rgb]{0.14901961,0.14901961,0.14901961}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Αντίστοιχοι αριθμοί Reynolds\end{tabular}}}}%
+    \put(0.86775538,0.15495811){\color[rgb]{0.14901961,0.14901961,0.14901961}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}${\scriptstyle\mathit{\times10^{-4}}}$\end{tabular}}}}%
+  \end{picture}%
+\endgroup%

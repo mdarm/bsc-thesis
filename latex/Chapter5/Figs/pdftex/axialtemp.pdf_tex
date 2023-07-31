@@ -1,0 +1,82 @@
+%% Creator: Inkscape 1.0 (4035a4fb49, 2020-05-01), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'axialtemp.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{301.14349365bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,1.33753941)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{axialtemp.pdf}}%
+    \put(0.92073513,0.31665406){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}25\end{tabular}}}}%
+    \put(0.92073513,0.42671405){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}30\end{tabular}}}}%
+    \put(0.92073513,0.53677429){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}35\end{tabular}}}}%
+    \put(0.92073513,0.64683428){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}40\end{tabular}}}}%
+    \put(0.92073513,0.75689427){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}45\end{tabular}}}}%
+    \put(0.92073513,0.86695426){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}50\end{tabular}}}}%
+    \put(0.92073513,0.9770145){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}55\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{axialtemp.pdf}}%
+    \put(0.01037019,0.46413025){\color[rgb]{0,0,0}\rotatebox{31.856949}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Re = 1100\end{tabular}}}}}%
+    \put(0.15567138,0.33855036){\color[rgb]{0,0,0}\rotatebox{31.856949}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Re = 1400\end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{axialtemp.pdf}}%
+    \put(0.30097259,0.15992812){\color[rgb]{0,0,0}\rotatebox{31.856949}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Re = 1700\end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{axialtemp.pdf}}%
+    \put(0.44627374,-0.00022433){\color[rgb]{0,0,0}\rotatebox{31.856949}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Re = 2000\end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{axialtemp.pdf}}%
+    \put(0.04626577,1.24420814){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$T_{\sigma} = 8.37$\end{tabular}}}}%
+    \put(0.19527637,1.11819382){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$T_{\sigma} = 8.21$\end{tabular}}}}%
+    \put(0.33516382,0.95347347){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$T_{\sigma} = 8.05$\end{tabular}}}}%
+    \put(0.48156783,0.78506684){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$T_{\sigma} = 7.91$\end{tabular}}}}%
+    \put(0.99176965,0.58585493){\color[rgb]{0,0,0}\rotatebox{90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$T$ (\unit{\degreeCelsius})\end{tabular}}}}}%
+    \put(0.04626577,1.30687504){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$T_{mean} = 46.53$\end{tabular}}}}%
+    \put(0.19527637,1.17717444){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$T_{mean} = 42.66$\end{tabular}}}}%
+    \put(0.33516382,1.01429723){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$T_{mean} = 39.79$\end{tabular}}}}%
+    \put(0.48156783,0.84957688){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$T_{mean} = 37.53$\end{tabular}}}}%
+  \end{picture}%
+\endgroup%

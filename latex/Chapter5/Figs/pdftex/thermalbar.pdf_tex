@@ -1,0 +1,79 @@
+%% Creator: Inkscape 1.0 (4035a4fb49, 2020-05-01), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'thermalbar.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{446.25bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.50756303)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{thermalbar.pdf}}%
+    \put(0.22493378,0.0496358){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}45$^o$\end{tabular}}}}%
+    \put(0.4195158,0.0496358){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}60$^o$\end{tabular}}}}%
+    \put(0.61409765,0.0496358){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}75$^o$\end{tabular}}}}%
+    \put(0.80867966,0.0496358){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}90$^o$\end{tabular}}}}%
+    \put(0.51680706,0.01210084){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Γωνία βρόγχων [μοίρες]\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{thermalbar.pdf}}%
+    \put(0.11955176,0.07361345){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}-40\end{tabular}}}}%
+    \put(0.11955176,0.15260504){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}-20\end{tabular}}}}%
+    \put(0.11955176,0.23159664){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}0\end{tabular}}}}%
+    \put(0.11955176,0.31058824){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}20\end{tabular}}}}%
+    \put(0.11955176,0.38957983){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}40\end{tabular}}}}%
+    \put(0.03918784,0.2403363){\rotatebox{90}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Δείκτης βελτίωσης\\ μεταφοράς θερμότηας [$\%$]\end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{thermalbar.pdf}}%
+    \put(0.18888638,0.45935059){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}1 βρόγχος\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{thermalbar.pdf}}%
+    \put(0.39683706,0.45935059){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}2 βρόγχοι\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{thermalbar.pdf}}%
+    \put(0.60272853,0.45935059){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}3 βρόγχοι\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{thermalbar.pdf}}%
+    \put(0.81213797,0.45935059){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}4 βρόγχοι\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{thermalbar.pdf}}%
+  \end{picture}%
+\endgroup%

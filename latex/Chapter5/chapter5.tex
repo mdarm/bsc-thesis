@@ -1,0 +1,441 @@
+%!TEX root = ../thesis.tex
+%*******************************************************************************
+%****************************** Fifth Chapter **********************************
+%*******************************************************************************
+\chapter{Αποτελέσματα δοκιμών και παρατηρήσεις}\label{ch:results}
+
+\begin{chapquote}{Robert J. Moffat\footnote{Αναφορά από το πρόσφατό του βιβλίο “Planning and Executing Credible Experiments” \cite{2021_Moffat_BOOK}, σελ. 185}, \textit{Stanford University, USA}}
+“Research experiments are like icebergs: only about 10\% of the total effort (the output data) are ever visible. The other 90\% is unseen – relegated to the logbook, but that 90\% is what establishes the validity of the visible 10\%!”
+\end{chapquote}
+
+% **************************** Define Graphics Path **************************
+\ifpdf
+    \graphicspath{{Chapter5/Figs/Raster/}{Chapter5/Figs/PDF/}{Chapter5/Figs/}}
+\else
+    \graphicspath{{Chapter5/Figs/Vector/}{Chapter5/Figs/}}
+\fi
+
+\sisetup{separate-uncertainty}
+
+% ******************************* Nomenclature ****************************************
+
+\nomenclature[z-ΔΕ]{ΔΕ}{Διάστημα Εμπιστοσύνης}
+\nomenclature[z-ΣΜΤ]{ΣΜΤ}{Σχετική Μέση Τιμή}
+\nomenclature[z-HTII]{HTII}{Heat Transfer Improvement Index}
+\nomenclature[z-PII]{PII}{Power Improvement Index}
+\nomenclature[z-PEI]{PEI}{Potential Efficiency Index}
+\nomenclature[g-$\sigma$]{$\sigma$}{Τυπική απόκλιση}
+\nomenclature[s-mean]{mean}{Μέση τιμή}
+
+
+\noindent Στο κεφάλαιο αυτό θα παρουσιαστούν τα αποτελέσματα που εξήχθησαν από τις αναλυτικές πράξεις της υπολογιστικής ρουτίνας στο \matlab (βλ. \prettyref{code:datapadding}). Συγκεκριμένα: (i) παρουσιάζονται τα αποτελέσματα της θερμοκρασιακής ομοιογένειας, (ii) τα μοντέλα παλινδρόμησης καθώς επίσης και οι αντιπροσωπευτικοί Nusselt και τιμές ισχύος, και (iii) οι δείκτες βελτίωσης των διατάξεων βρόγχων.
+
+\section{Θερμοκρασιακή ομοιογένεια}
+
+\noindent Οι μετρήσεις που ελήφθησαν, για κάθε διάταξη, όταν επικρατούσαν συνθήκες μόνιμης ροής, φαίνονται στο \prettyref{app:measurements}. Προφανώς σε τέτοια μορφή είναι αρκετά δύσκολο να εξαχθεί οποιουδήποτε είδους συμπέρασμα. Ως εκ τούτου, δημιουργήθηκαν θερμοκρασιακά προφίλ των εσωτερικών κυλίνδρων καθώς και σχετικός πίνακας όπου αναγράφονται οι σταθμισμένες μέσες τιμές και οι τυπικές αποκλίσεις τους.
+
+Οι θερμοκρασίες, κατά μήκος του αγωγού, στις οποίες το σύστημα ισορρόπησε φαίνονται στο \prettyref{fig:axialtemp} για διάταξη αξονικής ροής και στο \prettyref{fig:swirltemp} για διατάξεις βρόγχων. Τα στατιστικά δεδομένα, για την περίπτωση της αξονικής ροής (4 ζεύγη τιμών στο σύνολό τους), είναι τοποθετημένα στο σχετικό σχήμα, ενώ αυτά των περιδινούμενων ροών (64 ζεύγη τιμών στο σύνολό τους) τα αναφέρει ο \prettyref{tab:appartemp} για αποφυγή υπερφόρτωσης του σχετικού σχήματος. Να σημειωθεί ότι τα θερμοκρασιακά προφίλ φέρουν την τιμή της σημειακής μετρηθείσας θερμοκρασίας, από το εκάστοτε θερμοστοιχείο, η οποία, θεωρώντας κατά σύμβαση ότι αντιπροσωπεύει το σχετικό υποσύστημα της διάταξης (βλ. \prettyref{fig:controlvolume}), λαμβάνεται ως αντιπροσωπευτική τιμή αυτού. Οπότε τα θερμοκρασιακά προφίλ είναι αποτέλεσμα αυτής της γενίκευσης και δεν πρέπει, σε καμία περίπτωση, θα θεωρηθεί ότι έχουν διακριτή ακρίβεια.
+
+Παρατηρώντας τα θερμοκρασιακά προφίλ, συμπεραίνουμε ότι στην περίπτωση των διατάξεων βρόγχων 90 μοιρών παρουσιάζεται αναστροφή του θερμοκρασιακού προφίλ του εσωτερικού κυλίνδρου. Σε όλες τις διατάξεις, συμπεριλαμβανομένων και των αξονικών, η μεγαλύτερη ψύξη παρουσιάζεται ανάντη της διάταξης και εν συνεχεία φθίνει, ενώ σε αυτές με βρόγχους 90 μοιρών παρουσιάζεται κατάντη αυτής. Αυτό συμβαίνει διότι το ρευστό εγχέεται κάθετα στον άξονα συμμετρίας του δακτυλιοειδούς σωλήνα, με αποτέλεσμα η αξονική συνιστώσα (z) της ορμής να είναι μηδενική  \cite{1998_FariasNeto}, και να να υπάρχει πύκνωση ροϊκών γραμμών προς τον εξωτερικό κύλινδρο. Επίσης είναι ενδεικτικό της λανθασμένης θεώρησης μηδενικού χωρικού σφάλματος. Όντως, ακόμα και να αποκτούν μηδενική συνιστώσα αξονικής ορμή οι ροϊκές γραμμές, θα έπρεπε να ψύχουν την αντίσταση στο σημείο ανακοπής, πράγμα που δεν συμβαίνει.
+
+\begin{figure}[htbp]
+\centering
+\scriptsize
+\def\svgwidth{.47\linewidth}
+\subimport{Chapter5/Figs/pdftex}{axialtemp.pdf_tex}
+\caption{Θερμοκρασιακή κατανομή κατά μήκος αντίστασης για διατάξεις αξονικής ροής}
+\label{fig:axialtemp}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\subimport{Chapter5/Figs/pdftex}{swirltemp.pdf_tex}
+\caption{Θερμοκρασιακή κατανομή κατά μήκος αντίστασης για διατάξεις περιδινούμενων ροών}
+\label{fig:swirltemp}
+\end{figure}
+
+\begin{landscape}
+
+\begin{table*}[htbp]
+\centering
+\caption{Μέσες θερμοκρασίες και τυπικές αποκλίσεις (\unit{\degreeCelsius}) διατάξεων περιδινούμενων ροών}\label{tab:appartemp}
+\ra{1.3}
+\begin{adjustbox}{width=1.45\textheight, center = \textheight}
+\begin{tabular}{@{}rrrrrcrrrrcrrrrcrrrr@{}}\toprule
+& \multicolumn{4}{c}{$Re \simeq 1100$} & \phantom{abc}& \multicolumn{4}{c}{$Re \simeq 1400$} &
+\phantom{abc} & \multicolumn{4}{c}{$Re \simeq 1700$} & \phantom{abc} & \multicolumn{4}{c}{$Re \simeq 2000$}\\
+\cmidrule{2-5} \cmidrule{7-10} \cmidrule{12-15} \cmidrule{17-20}
+& $\alpha=1$ & $\alpha=2$ & $\alpha=3$ & $\alpha=4$ && $\alpha=1$ & $\alpha=2$ & $\alpha=3$ & $\alpha=4$ && $\alpha=1$ & $\alpha=2$ & $\alpha=3$ & $\alpha=4$ && $\alpha=1$ & $\alpha=2$ & $\alpha=3$ & $\alpha=4$\\\midrule
+\textit{Μέση τιμή διάταξης}\\
+$\phi=\ang{45}$\\
+$\scriptstyle{T_{mean}}$ & 45.46 & 46.77 & 47.55 & 48.19 && 42.88 & 44.33 & 45.46 & 45.92 && 40.91 & 42.45 & 43.84 & 44.17 && 39.34 & 40.95 & 42.53 & 42.75\\ 
+$\phi=\ang{60}$\\
+$\scriptstyle{T_{mean}}$ & 47.15 & 45.26 & 45.40 & 46.42 && 44.50 & 42.55 & 42.88 & 43.61 && 42.46 & 40.49 & 41.09 & 41.48 && 40.84 & 38.84 & 39.46 & 39.78\\ 
+$\phi=\ang{75}$\\
+$\scriptstyle{T_{mean}}$ & 49.92 & 46.02 & 45.63 & 46.48 && 44.06 & 42.84 & 42.77 & 44.09 && 41.88 & 40.43 & 40.60 & 42.26 && 40.15 & 38.52 & 38.87 & 40.79\\
+$\phi=\ang{90}$\\
+$\scriptstyle{T_{mean}}$ & 47.64 & 47.68 & 46.59 & 47.09 && 44.64 & 44.93 & 43.57 & 44.03 && 42.36 & 42.84 & 41.28 & 41.71 && 40.54 & 41.16 & 39.46 & 39.87\\  
+& \\
+\textit{Τυπική απόκλιση}\\
+$\phi=\ang{45}$\\
+$\scriptstyle{T_{\sigma, mean}}$ & 5.85 & 5.55 & 5.85 & 5.92 && 5.42 & 5.18 & 5.33 & 5.43 && 5.10 & 4.90 & 4.93 & 5.06 && 4.84 & 4.68 & 4.62 & 4.76\\ 
+$\phi=\ang{60}$\\
+$\scriptstyle{T_{\sigma, mean}}$ & 6.10 & 6.04 & 5.87 & 5.37 && 5.68 & 5.59 & 5.37 & 4.84 && 5.37 & 5.26 & 5.05 & 4.44 && 5.12 & 4.99 & 4.73 & 4.13\\ 
+$\phi=\ang{75}$\\
+$\scriptstyle{T_{\sigma, mean}}$ & 6.39 & 6.11 & 5.80 & 5.61 && 6.02 & 5.71 & 5.31 & 5.11 && 5.74 & 5.41 & 4.94 & 4.74 && 5.52 & 5.18 & 4.66 & 4.44\\
+$\phi=\ang{90}$\\
+$\scriptstyle{T_{\sigma, mean}}$ & 6.37 & 5.89 & 5.68 & 5.38 && 5.92 & 5.37 & 5.18 & 4.87 && 5.60 & 4.99 & 4.80 & 4.50 && 5.34 & 4.69 & 4.51 & 4.21\\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table*}
+
+\end{landscape}
+
+Ο \prettyref{tab:apparatushomogeneity}\footnote{Ο πίνακας εμπνεύστηκε από τον κώδικα TikZ του Alfonso R. Reyes, διαθέσιμο στο \href{https://github.com/f0nzie/tikz_favorites/blob/master/src/fileIO-table-read_data+fileio+pgf+table.tex}{https://github.com/f0nzie}.} \enquote{σουλουπώνει} τα προαναφερθέντα δεδομένα και τα ανάγει σε σχετικές διαφορές από τη μέση τιμή θερμοκρασίας της αξονικής ροής. Όπου οι συντμήσεις ΣΜΤ και ΔΕ είναι οι Σχετική Μέση τιμή και το Διάστημα Εμπιστοσύνης αντιστοίχως. 
+
+Οι διατάξεις βρόγχων παρουσιάζουν μικρότερη διασπορά στις μετρήσεις θερμοκρασίας συγκριτικά με την αξονική ροή (\qty{8.14}{\degreeCelsius}). Μεταξύ αυτών, η μέγιστη τυπική απόκλιση παρουσιάζεται στη διάταξη 75 μοιρών και ενός βρόγχου (\qty{5.91}{\degreeCelsius}), ενώ η ελάχιστη παρουσιάζεται στη διάταξη 90 μοιρών και τεσσάρων βρόγχων  (\qty{4.73}{\degreeCelsius}).  Παρατηρείται ότι για διατάξεις ενός και τριών βρόγχων, ο εσωτερικός κύλινδρος ψύχεται πιο ανομοιoγενώς, εν αντιθέσει με αυτές των δύο και τεσσάρων βρόγχων. Αυτό είναι ενδεικτικό της συμμετρίας έγχυσης ρευστού, ως προς τον κατακόρυφο άξονα του δακτυλίου, που παρουσιάζουν οι τελευταίες.
+
+% Read data file, create new column ``upper CI boundary - mean''
+\pgfplotstableread{./Chapter5/data/data.txt}\data
+\pgfplotstableset{create on use/error/.style={
+    create col/expr={\thisrow{uci}-\thisrow{mean}
+    }
+  }
+}
+
+% Define the command for the plot
+\newcommand{\errplot}{%
+  \begin{tikzpicture}[trim axis left,trim axis right]
+    \begin{axis}[y=-\baselineskip,
+        scale only axis,
+        width             = 6.5cm,
+        enlarge y limits  = {abs=0.5},
+        axis y line*      = middle,
+        y axis line style = dashed,
+        ytick             = \empty,
+        axis x line*      = bottom
+      ]
+      % ``mean'' must be present in the datafile,
+      %``error'' is the newly generated column
+      \addplot+[only marks][error bars/.cd,x dir=both, x explicit]
+        table [x=mean,y expr=\coordindex,x error=error]{\data};
+    \end{axis}
+  \end{tikzpicture}%
+}
+
+% Get number of rows in datafile
+\pgfplotstablegetrowsof{\data}
+\let\numberofrows=\pgfplotsretval
+
+\begin{table}[h!]
+\centering
+\caption{Σχετική μέση τιμή και τυπική απόκλιση θερμοκρασιών (σε \unit{\degreeCelsius}), για κάθε πειραματική διάταξη βρόγχων, συναρτήσει της μέσης τιμής αξονικής ροής. Όπου $\phi$ και $\alpha$ η κλίση και ο αριθμός βρόγχων αντίστοιχα.}
+\label{tab:apparatushomogeneity}
+% Print the table
+\pgfplotstabletypeset
+  [
+    columns={name,error,mean,ci},
+    % Booktabs rules
+    every head row/.style = {before row=\toprule, after row=\midrule},
+    every last row/.style = {after row=[3ex]\bottomrule},
+    % Set header name
+    columns/name/.style = {string type, column name=Διάταξη $(\phi-\alpha)$},
+    % Use the ``error'' column to call the \errplot command in a multirow cell
+    % in the first row, keep empty for all other rows
+    columns/error/.style = {
+      column name = {},
+      assign cell content/.code = {% use \multirow for Z column:
+      \ifnum\pgfplotstablerow=0
+        \pgfkeyssetvalue{/pgfplots/table/@cell content}
+        {\multirow{\numberofrows}{6.5cm}{\errplot}}%
+      \else
+        \pgfkeyssetvalue{/pgfplots/table/@cell content}{}%
+      \fi
+      }
+    },
+    % Format numbers and titles
+    columns/mean/.style = {column name =ΣΜΤ, fixed ,fixed zerofill, dec sep align},
+    columns/ci/.style   = {string type, column name = 64\% ΔΕ},
+    % Create the ``(x to y)'' format, use \pgfmathprintnumber with `showpos`
+    % to make things align nicely
+    create on use/ci/.style={
+    create col/assign/.code={\edef\value{(
+      \noexpand\pgfmathprintnumber[showpos,fixed,fixed zerofill]{\thisrow{lci}}
+      με \noexpand\pgfmathprintnumber[showpos,fixed,fixed zerofill]{\thisrow{uci}})}
+      \pgfkeyslet{/pgfplots/table/create col/next content}\value
+      }
+    }
+  ]
+{\data}
+\end{table}
+
+
+\section{Μοντέλα παρεμβολής και μέσες τιμές ισχύος και αριθμών Nusselt}
+
+\begin{table*}[!htbp]
+\caption{Αποτελέσματα μοντέλων παρεμβολής}\label{tab:powerfits}
+\centering
+\ra{1.3}
+\begin{adjustbox}{width=\textwidth}
+\begin{tabular}{@{}rrrrrrcrrrrr@{}}\toprule
+& \multicolumn{5}{c}{$\overline{Nu} = a{Re}^b$} & \phantom{abc} & \multicolumn{5}{c}{$\dot{W} = a\dot{\volume}^b$}\\
+\cmidrule{2-6} \cmidrule{8-12}
+& $a$ & $\sigma_a$ & $b$ & $\sigma_b$ & $r^2$ && $a \times 10^{-10}$ & $\sigma_a \times 10^{-10}$ & $b$ & $\sigma_b$ & $r^2$\\ \midrule
+$\phi=\ang{45}$\\
+$\alpha = 1$ & 2.12 &  0.91 &  0.59 &  0.06 & 0.9765 && 1149.10 & 1702.43 &  3.73 &  0.22 & 0.9724 \\ 
+$\alpha = 2$ & 4.38 &  1.63 &  0.48 &  0.05 & 0.9951 &&  0.68 &  1.00 &  2.83 &  0.22 & 0.9948 \\ 
+$\alpha = 3$ & 4.23 &  1.59 &  0.48 &  0.05 & 0.9989 &&  0.08 &  0.14 &  2.60 &  0.26 & 0.9863 \\ 
+$\alpha = 4$ & 9.10 &  3.19 &  0.37 &  0.05 & 0.9913 &&  0.01 &  0.01 &  2.16 &  0.26 & 0.9808 \\ 
+$\phi=\ang{60}$\\
+$\alpha = 1$ & 5.21 &  1.98 &  0.45 &  0.05 & 0.9752 && 762.82 & 1083.21 &  3.67 &  0.21 & 0.9921 \\ 
+$\alpha = 2$ & 4.39 &  1.61 &  0.47 &  0.05 & 0.9863 &&  3.62 &  5.27 &  3.04 &  0.22 & 0.9938 \\
+$\alpha = 3$ & 1.55 &  0.73 &  0.62 &  0.06 & 0.9812 && 70736.96 & 143638.32 &  4.47 &  0.30 & 0.9872 \\ 
+$\alpha = 4$ & 3.88 &  1.53 &  0.50 &  0.05 & 0.9990 &&  0.09 &  0.17 &  2.63 &  0.27 & 0.9798 \\
+$\phi=\ang{75}$\\
+$\alpha = 1$ & 3.02 &  1.28 &  0.53 &  0.06 & 0.9821 && 2694.81 & 4484.46 &  3.92 &  0.25 & 0.9934 \\ 
+$\alpha = 2$ & 1.85 &  0.77 &  0.61 &  0.06 & 0.9759 && 12.73 & 20.73 &  3.25 &  0.24 & 0.9648 \\ 
+$\alpha = 3$ & 2.18 &  0.91 &  0.58 &  0.06 & 0.9997 &&  0.79 &  1.38 &  2.91 &  0.26 & 0.9920 \\ 
+$\alpha = 4$ & 2.35 &  0.99 &  0.56 &  0.06 & 0.9917 &&  0.58 &  1.08 &  2.88 &  0.28 & 0.9960 \\
+$\phi=\ang{90}$\\
+$\alpha = 1$ & 1.73 &  0.83 &  0.55 &  0.07 & 0.9998 && 14936.32 & 25208.21 &  4.14 &  0.25 & 0.9806 \\
+$\alpha = 2$ & 1.38 &  0.69 &  0.58 &  0.07 & 0.9982 && 76.27 & 142.51 &  3.51 &  0.28 & 0.9905 \\
+$\alpha = 3$ & 1.98 &  0.94 &  0.54 &  0.07 & 0.9789 &&  2.15 &  3.99 &  3.05 &  0.28 & 0.9717 \\
+$\alpha = 4$ & 2.21 &  1.00 &  0.52 &  0.06 & 0.9756 &&  0.22 &  0.41 &  2.75 &  0.27 & 0.9651 \\
+&\\
+\textit{αξονική} & 1.23 &  0.62 &  0.64 &  0.07 & 0.9950 &&  0.02 &  0.05 &  2.45 &  0.44 & 0.9974\\ 
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table*}
+
+Ο \prettyref{tab:powerfits} έχει τις παραμέτρους, καθώς και τις αβεβαιότητες, των μοντέλων παρεμβολής για τις συσχετίσεις $\overline{Nu} = f(Re)$ και $\dot{W} = f(\volume)$. Παρατηρείται ότι ο συντελεστής συσχέτισης Pearson (ο όρος $r^2$, γνωστός και ως coefficient of determination) \cite{1987_Kendall_BOOK} προσέγγιζε, σε όλες της περιπτώσεις, την μονάδα. Αυτό είναι ενδεικτικό της καταλληλότητας των μοντέλων παρεμβολής, ως αρχική εκτίμηση τουλάχιστον. Για την ακρίβεια, όσον αφορά την σχέση $\overline{Nu} = f(Re)$, είναι μια επιβεβαίωση της εμπειρικής σχέσης που προέκυψε από την βιβλιογραφία (βλ. υποενότητα \ref{corellation}). 
+
+Έχοντας πλέον αυτά τα δεδομένα, και εφαρμόζοντας τις σχέσεις \ref{nusepp} και \ref{pwrep}, βρίσκουμε τους αντιπροσωπευτικούς Nusselt (\prettyref{tab:nuavg}) και τις αντιπροσωπευτικές τιμές ισχύος (\prettyref{tab:pavg}). Τα διαγράμματα συσχέτισης αριθμών Nusselt-Reynolds (Σχήματα \ref{nure45} με \ref{nure90}) και αυτά της Ισχύος-παροχής (Σχήματα \ref{pq45} με \ref{pq90}) ακολουθούν των σχολιασμών.
+
+\subsubsection{Αντιπροσωπευτικοί Nusselt}
+
+\begin{table}[!htbp]
+\caption{Αντιπροσωπευτικοί αριθμοί Nusselt}
+\centering
+\label{tab:nuavg}
+\ra{1.3}
+\begin{adjustbox}{width=\textwidth}
+\begin{tabular}{@{}lrrcrrcrrcrr@{}}
+\toprule
+\multirow[c]{3}*[-2mm]{Γωνία βρόγχων} & \multicolumn{11}{c}{Αριθμός βρόγχων}\\
+\cmidrule{2-12}
+	& \multicolumn{2}{c}{$\alpha = 1$} && \multicolumn{2}{c}{$\alpha = 2$} && \multicolumn{2}{c}{$\alpha = 3$} &&\multicolumn{2}{c}{$\alpha = 4$} \\
+	\cmidrule{2-3} \cmidrule{5-6} \cmidrule{8-9} \cmidrule{11-12}
+	& $\overline{Nu}_{\scriptsize{avg}}$ & $\sigma_{\overline{\mbox{\scriptsize{Nu}}}\mbox{\tiny{avg}}}$ && $\overline{Nu}_{\scriptsize{avg}}$ & $\sigma_{\overline{\mbox{\scriptsize{Nu}}}\mbox{\tiny{avg}}}$ && $\overline{Nu}_{\scriptsize{avg}}$ & $\sigma_{\overline{\mbox{\scriptsize{Nu}}}\mbox{\tiny{avg}}}$ && $\overline{Nu}_{\scriptsize{avg}}$ & $\sigma_{\overline{\mbox{\scriptsize{Nu}}}\mbox{\tiny{avg}}}$ \\
+\midrule	
+$\phi=\ang{45}$ & 160.04 & 14.12 && 144.58 &  4.95 && 137.40 &  2.20 && 135.80 &  4.92 \\ 
+$\phi=\ang{60}$ & 139.85 & 10.22 && 136.79 &  7.97 && 146.32 & 11.64 && 149.45 &  2.31 \\ 
+$\phi=\ang{75}$ & 143.31 & 10.05 && 155.79 & 15.69 && 147.35 &  1.54 && 140.88 &  6.99 \\ 
+$\phi=\ang{90}$ & 98.80 &  0.71 && 100.04 &  2.39 && 106.08 &  8.48 && 103.78 &  9.19 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+Οι διατάξεις βρόγχων παρουσίασαν, στην συντριπτική τους πλειοψηφία, μεγαλύτερο αντιπροσωπευτικό Nusselt από αυτόν της αξονικής ροής (\num{128.41(532)}). Μεταξύ αυτών, μέγιστη τιμή παρουσίασε η διάταξη 45 μοιρών και ενός βρόγχου (\num{159.65(1397)}), ενώ ελάχιστη τιμή παρουσίασε η διάταξη 90 μοιρών και ενός βρόγχου (\num{96.37(069)}). Αυτό έρχεται σε συμφωνία με παρόμοια έρευνα στην ίδια πειραματική διάταξη \cite{2019_Serbes_THESIS}.
+
+Να σημειωθεί εδώ ότι ενώ οι διατάξεις βρόγχων ενδείκνυνται για σκοπούς ψύξης, δεν έχουν πρακτική εφαρμογή σε εφαρμογές θέρμανσης του εργαζόμενου μέσου. Σύμφωνα με τους \citeauthor{1998_FariasNeto} \cite{1998_FariasNeto}, κοντά στον εξωτερικό κύλινδρο, η τοπική ένταση στροβιλισμού είναι πάντα μεγαλύτερη αυτής του εσωτερικού, γεγονός που εξηγεί γιατί η μεταφορά μάζας στο εξωτερικό κύλινδρο είναι μεγαλύτερος από αυτόν που μετράται στον εσωτερικό του δακτυλίου \parencites{1993_Legentilhomme}{1990_Legentilhomme}.
+
+Τα σφάλματα των μετρήσεων κυμάνθηκαν σε σχετικά ικανοποιητικά όρια, με μέγιστο \qty{9.6}{\percent} της ένδειξης και ελάχιστο \qty{1,2}{\percent} της ένδειξης.
+\clearpage
+
+\subsubsection{Αντιπροσωπευτικές τιμές ισχύος}
+
+\begin{table}[!htbp]
+\caption{Μέση καταναλισκόμενη ισχύς}
+\centering
+\ra{1.3}
+\label{tab:pavg}
+\begin{adjustbox}{width=\textwidth}
+\begin{tabular}{@{}lrrcrrcrrcrr@{}}
+\toprule
+\multirow{3}*[-2mm]{Γωνία βρόγχων} & \multicolumn{11}{c}{Αριθμός βρόγχων}\\
+\cmidrule{2-12}
+	& \multicolumn{2}{c}{$\alpha = 1$} && \multicolumn{2}{c}{$\alpha = 2$} && \multicolumn{2}{c}{$\alpha = 3$} &&\multicolumn{2}{c}{$\alpha = 4$} \\
+	\cmidrule{2-3} \cmidrule{5-6} \cmidrule{8-9} \cmidrule{11-12}
+	& $\dot{W}_{\scriptsize{avg}}$ & $\sigma_{\scriptsize{\dot{W}}\scriptsize{avg}}$ && $\dot{W}\scriptsize{avg}$ & $\sigma_{\scriptsize{\dot{W}}\scriptsize{avg}}$ && $\dot{W}\scriptsize{avg}$ & $\sigma_{\scriptsize{\dot{W}}\scriptsize{avg}}$ && $\dot{W}\scriptsize{avg}$ & $\sigma_{\scriptsize{\dot{W}}\scriptsize{avg}}$ \\
+\midrule	
+$\phi=\ang{45}$ & 18.78 & 16.96 &&  4.06 &  2.94 &&  2.32 &  4.37 &&  1.59 &  4.38 \\  
+$\phi=\ang{60}$ & 17.35 & 16.14 &&  5.17 &  4.06 &&  8.60 &  4.48 &&  2.08 &  2.61 \\ 
+$\phi=\ang{75}$ & 12.12 &  3.01 &&  4.56 &  4.49 &&  2.82 &  1.36 &&  2.50 &  0.95 \\ 
+$\phi=\ang{90}$ & 14.86 &  5.32 &&  5.24 &  1.09 &&  2.98 &  3.06 &&  2.20 &  3.72 \\ 
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+Όπως δείχνει ο \prettyref{tab:pavg}, όλες οι διατάξεις βρόγχων απαιτούσαν περισσότερη ισχύ για να εξασφαλίσουν ίδιες συνθήκες ροής με αυτήν της αξονικής. Η αξονική ροής είχε ως αντιπροσωπευτική τιμή ισχύος \qty[separate-uncertainty-units = single]{1.21(043)}{\watt}. Μεταξύ των διατάξεων βρόγχου, μέγιστη καταναλισκόμενη ισχύ παρουσίασε η διάταξη 45 μοιρών και ενός βρόγχου (\qty[separate-uncertainty-units = single]{18.78(1669)}{\watt}), ενώ ελάχιστη παρουσίασε η διάταξη 45 μοιρών και τεσσάρων βρόγχων (\qty[separate-uncertainty-units = single]{1.59(439)}{\watt}). Αυτό έρχεται σε αντίθεση με τη βιβλιογραφία \cite{1998_FariasNeto}. Στη διάταξη βρόγχων 90 μοιρών, το ρευστό εγχέεται κάθετα στον άξονα συμμετρίας του δακτυλιοειδούς σωλήνα, με αποτέλεσμα η αξονική συνιστώσα (z) της ορμής να είναι μηδενική, προκαλώντας κατ' αυτόν τον τρόπο μεγάλες απώλειες πίεσης.
+
+Τα σφάλματα των μετρήσεων ήταν αρκετά αισθητά, της τάξεως του \qty{300}{\percent}. Αυτό καθιστά την όποια αξιολόγηση, και πόσο μάλλον σύγκρισή τους, αναξιόπιστη. Μέγιστο σφάλμα μέτρησης παρουσίασε η διάταξη 90 μοιρών και τεσσάρων βρόγχων (\qty{315.11}{\percent} της ένδειξης), ενώ ελάχιστο είχε η διάταξη 75 μοιρών και τριών βρόγχων (\qty{25}{\percent} της ένδειξης). Αυτή η τάξη μεγεθών σχετικών σφαλμάτων είναι απόρροια των αβεβαιοτήτων των σχετικών μοντέλων παρεμβολής όπως δείχνει ο \prettyref{tab:powerfits}.
+
+Μία εύλογη παρατήρηση εδώ είναι η αντίφαση που δημιουργείται μεταξύ του, κατά γενική ομολογία, αποδεκτού συντελεστή Pearson και τις μεγάλες αβεβαιότητες που φέρουν οι παράμετροι των μοντέλων παρεμβολής $a, b$. Αυτό είναι ξεκάθαρα πταίσμα της παρούσας έρευνας. Ενώ ο συντελεστής προσδιορισμού είναι μία καλή ένδειξη της εγκυρότητας της παρεμβολής, δεν είναι η μόνη ένδειξή της. Ιδανικά θα έπρεπε, μεταξύ άλλων, να υπολογιστεί και ο αμερόληπτος συντελεστής συνδιασποράς (residual sum of squares, SSres) \cite{1991_Lyons_BOOK_CHAPTER} για να γίνει εκτίμηση της εγγύτητας των πειραματικών δεδομένων.
+\clearpage
+
+\begin{figure}[bt]
+\centering
+\subimport{Chapter5/Figs/pdftex}{nure45.pdf_tex}
+\caption{Συσχέτιση μέσου Nusselt και Reynolds για διατάξεις βρόγχου \ang{45}}\label{nure45}
+\end{figure}
+
+\begin{figure}[bp]
+\centering
+\subimport{Chapter5/Figs/pdftex}{nure60.pdf_tex}
+\caption{Συσχέτιση μέσου Nusselt και Reynolds για διατάξεις βρόγχου \ang{60}}\label{nure60}
+\end{figure}
+\clearpage
+
+\begin{figure}[bp]
+\centering
+\subimport{Chapter5/Figs/pdftex}{nure75.pdf_tex}
+\caption{Συσχέτιση μέσου Nusselt και Reynolds για διατάξεις βρόγχου \ang{75}}\label{nure75}
+\end{figure}
+
+\begin{figure}[bp]
+\centering
+\subimport{Chapter5/Figs/pdftex}{nure90.pdf_tex}
+\caption{Συσχέτιση μέσου Nusselt και Reynolds για διατάξεις βρόγχου \ang{90}}\label{nure90}
+\end{figure}
+\clearpage
+
+\begin{figure}[bp]
+\centering
+\subimport{Chapter5/Figs/pdftex}{pq45.pdf_tex}
+\caption{Συσχέτιση καταναλισκόμενης ισχύος και παροχής για διατάξεις βρόγχου \ang{45}}\label{pq45}
+\end{figure}
+
+\begin{figure}[bp]
+\centering
+\subimport{Chapter5/Figs/pdftex}{pq60.pdf_tex}
+\caption{Συσχέτιση καταναλισκόμενης ισχύος και παροχής για διατάξεις βρόγχου \ang{60}}\label{pq60}
+\end{figure}
+\clearpage
+
+\begin{figure}[bp]
+\centering
+\subimport{Chapter5/Figs/pdftex}{pq75.pdf_tex}
+\caption{Συσχέτιση καταναλισκόμενης ισχύος και παροχής για διατάξεις βρόγχου \ang{75}}\label{pq75}
+\end{figure}
+
+\begin{figure}[bp]
+\centering
+\subimport{Chapter5/Figs/pdftex}{pq90.pdf_tex}
+\caption{Συσχέτιση καταναλισκόμενης ισχύος και παροχής για διατάξεις βρόγχου \ang{90}}\label{pq90}
+\end{figure}
+\clearpage
+
+
+\section{Δείκτες βελτίωσης}
+
+\noindent Μέσω των αντιπροσωπευτικών αριθμών Nusselt και τιμών ισχύος, και λαμβάνοντας υπόψη το ποσό ροής θερμότητας που έλαβε ο αέρας για κάθε διάταξη (βλ. \prettyref{eq:htrate}), βρισκόμαστε πλέον σε θέση να κρίνουμε την βελτίωση (όπου αυτή υπήρξε) των διατάξεων βρόγχων σε σύγκριση με αυτήν της αξονικής ροής.
+
+\subsubsection{Δείκτης βελτίωσης μεταφοράς θερμότητας (HTII)}
+
+\begin{table*}[!htbp]
+\caption{Δείκτης βελτίωσης μεταφοράς θερμότητας [\unit{\percent}] (HTII)}
+\centering
+\ra{1.3}
+\label{tab:thermeff}
+\begin{tabular}{@{}lrrcrrcrrcrr@{}}
+\toprule
+\multirow{3}*[-2mm]{Γωνία βρόγχων} & \multicolumn{11}{c}{Αριθμός βρόγχων}\\
+\cmidrule{2-12}
+	& \multicolumn{2}{c}{$\alpha = 1$} && \multicolumn{2}{c}{$\alpha = 2$} && \multicolumn{2}{c}{$\alpha = 3$} &&\multicolumn{2}{c}{$\alpha = 4$} \\
+	\cmidrule{2-3} \cmidrule{5-6} \cmidrule{8-9} \cmidrule{11-12}
+	& HTII & $\sigma_{\text{\tiny{HTII}}}$ && HTII & $\sigma_{\text{\tiny{HTII}}}$ && HTII & $\sigma_{\text{\tiny{HTII}}}$ && HTII & $\sigma_{\text{\tiny{HTII}}}$ \\
+\midrule	
+$\phi=\ang{45}$ & 24.32 & 12.04 && 12.48 &  6.05 &&  6.95 &  4.77 &&  5.70 &  5.81 \\ 
+$\phi=\ang{60}$ &  8.69 &  9.05 &&  6.34 &  7.55 && 13.86 & 10.13 && 16.33 &  5.14 \\ 
+$\phi=\ang{75}$ & 11.15 &  8.85 && 20.75 & 12.37 && 14.63 &  4.88 &&  9.69 &  7.06 \\ 
+$\phi=\ang{90}$ & -24.95 &  3.16 && -23.50 &  3.68 && -18.96 &  7.21 && -20.78 &  7.50 \\ 
+\bottomrule
+\end{tabular}
+\end{table*}
+
+
+\begin{figure}[!htpb]
+\centering
+\subimport{Chapter5/Figs/pdftex}{thermalbar.pdf_tex}
+\caption{Δείκτης βελτίωσης μεταφοράς θερμότητας (HTII) για κάθε συνδυασμό γωνίας και αριθμών βρόγχου σε σύγκριση με την απλή περίπτωση αξονικής ροής.}\label{fig:thermalbar}
+\end{figure}
+
+Όπως φαίνεται στο \prettyref{fig:thermalbar}, οι περισσότερες διατάξεις βρόγχων παρουσίασαν βελτίωση μεταφοράς θερμότητας. Μόνο αυτές με κλίση βρόγχων 90 μοιρών δεν παρουσίασαν βελτίωση. Μεταξύ αυτών, μέγιστη βελτίωση παρουσίασε η διάταξη 45 μοιρών και ενός βρόγχου (\qty[separate-uncertainty-units = single]{24.32(1204)}{\percent}), ενώ ελάχιστη τιμή παρουσίασε η διάταξη 90 μοιρών και ενός βρόγχου (\qty[separate-uncertainty-units = single]{-24.45(316)}{\percent}).
+
+Σχετικά με τις αβεβαιότητες των μετρήσεων, αυτές κυμαίνονταν από \qty[separate-uncertainty-units = single]{101.35}{\percent} της ένδειξης για την διάταξη 45 μοιρών και τεσσάρων βρόγχων, μέχρι \qty[separate-uncertainty-units = single]{13.16}{\percent} για την διάταξη 90 μοιρών και τεσσάρων βρόγχων.  H πλειονότητα των τιμών δεν είναι αξιόπιστη. Τα σφάλματα των σταθερών μοντέλων παρεμβολής (βλ. \prettyref{tab:powerfits}) φαίνεται να επισύρουν τους υπολογισμούς δεικτών.
+
+\subsubsection{Δείκτης βελτίωσης καταναλισκόμενης ισχύος (PII)}
+
+\begin{table}[!htbp]
+\caption{Δείκτης βελτίωσης καταναλισκόμενης ισχύος [\unit{\percent}] (PII)}
+\centering
+\ra{1.3}
+\label{tab:powereff}
+\begin{adjustbox}{width = \textwidth}
+\begin{tabular}{@{}lrrcrrcrrcrr@{}}
+\toprule
+\multirow{3}*[-2mm]{Γωνία βρόγχων} & \multicolumn{11}{c}{Αριθμός βρόγχων}\\
+\cmidrule{2-12}
+	& \multicolumn{2}{c}{$\alpha = 1$} && \multicolumn{2}{c}{$\alpha = 2$} && \multicolumn{2}{c}{$\alpha = 3$} &&\multicolumn{2}{c}{$\alpha = 4$} \\
+	\cmidrule{2-3} \cmidrule{5-6} \cmidrule{8-9} \cmidrule{11-12}
+	& PII\phantom{PI} & $\sigma_{\text{\tiny{PII}}}$\phantom{PI} && PII\phantom{PI} & $\sigma_{\text{\tiny{PII}}}$\phantom{PI} && PII\phantom{PI} & $\sigma_{\text{\tiny{PII}}}$\phantom{PI} && PII\phantom{PI} & $\sigma_{\text{\tiny{PII}}}$\phantom{PI} \\
+\midrule
+$\phi=\ang{45}$  & -1457.43 & 1540.37 && -236.65 & 279.08 && -92.32 & 370.21 && -31.95 & 366.66 \\ 
+$\phi=\ang{60}$  & -1338.43 & 1458.93 && -328.27 & 378.62 && -612.90 & 470.01 && -72.60 & 227.72 \\  
+$\phi=\ang{75}$  & -904.64 & 476.40 && -278.18 & 402.08 && -133.91 & 147.19 && -107.60 & 115.17 \\  
+$\phi=\ang{90}$  & -1132.16 & 665.14 && -334.46 & 197.27 && -147.15 & 272.66 && -82.05 & 317.21 \\ 
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+\begin{figure}[!htbp]
+\centering
+\subimport{Chapter5/Figs/pdftex}{powerbar.pdf_tex}
+\caption{Δείκτης βελτίωσης καταναλισκόμενης ισχύος (PII) για κάθε συνδυασμό γωνίας και αριθμών βρόγχου σε σύγκριση με την απλή περίπτωση αξονικής ροής.}\label{fig:powerbar}
+\end{figure}
+
+Όπως και ήταν αναμενόμενο από τις αντιπροσωπευτικές τιμές ισχύος, δεν υπάρχει βελτίωση όσον αφορά την απαιτούμενη ισχύ στις διατάξεις βρόγχου. Ωστόσο, μέγιστη βελτίωση παρουσίασε η διάταξη 45 μοιρών και τεσσάρων βρόγχων (\qty[separate-uncertainty-units = single]{-31,95(36666)}{\percent}), ενώ ελάχιστη η διάταξη 45 μοιρών και ενός βρόγχου (\qty[separate-uncertainty-units = single]{-1457,43(154037)}{\percent}).
+
+Παρατηρώντας όλους τους δείκτες στο \prettyref{fig:powerbar}, συμπεραίνουμε για τις εξεταζόμενες διατάξεις βρόγχων ότι αυξανόμενου του αριθμού βρόχων, βελτιώνεται ο δείκτης βελτίωσης ισχύος. Αυτό συμβαίνει διότι για να εξασφαλιστούν οι εκάστοτε συνθήκες ροής, για μικρό αριθμό βρόγχων, απαιτείται η έγχυση ρευστού από μικρότερη επιφάνεια και ως εκ τούτου έχει περισσότερες απώλειες.
+
+Τα σφάλματα των μετρήσεων ήταν πολύ άνω του αποδεκτού ορίου. Μέγιστο σφάλμα μέτρησης παρουσίασε η διάταξη 45 μοιρών και τεσσάρων βρόγχων (\qty{1180,64}{\percent} της ένδειξης), ενώ ελάχιστο είχε η διάταξη 75 μοιρών και τριών βρόγχων (\qty{58,74}{\percent} της ένδειξης). 
+
+\subsubsection{Δείκτης βελτίωσης ωφέλιμου δυναμικού (PEI)}
+
+\begin{table}[!htbp]
+\caption{Δείκτης βελτίωσης ωφέλιμου δυναμικού [\unit{\percent}] (PEI)}
+\centering
+\ra{1.3}
+\label{tab:potffindex}
+\begin{tabular}{@{}lrrcrrcrrcrr@{}}
+\toprule
+\multirow{3}*[-2mm]{Γωνία βρόγχων} & \multicolumn{11}{c}{Αριθμός βρόγχων}\\
+\cmidrule{2-12}
+	& \multicolumn{2}{c}{$\alpha = 1$} && \multicolumn{2}{c}{$\alpha = 2$} && \multicolumn{2}{c}{$\alpha = 3$} &&\multicolumn{2}{c}{$\alpha = 4$} \\
+	\cmidrule{2-3} \cmidrule{5-6} \cmidrule{8-9} \cmidrule{11-12}
+	& PEI & $\sigma_{\text{\tiny{PEI}}}$ && PEI & $\sigma_{\text{\tiny{PEI}}}$ && PEI & $\sigma_{\text{\tiny{PEI}}}$ && PEI & $\sigma_{\text{\tiny{PEI}}}$ \\
+\midrule	
+$\phi=\ang{45}$ & -88.93 &  2.64 && -64.69 &  8.97 && -37.91 & 16.82 && -31.86 & 19.01 \\ 
+$\phi=\ang{60}$ & -87.83 &  2.91 && -71.22 &  7.25 && -65.07 &  8.68 && -44.46 & 14.98 \\ 
+$\phi=\ang{75}$ & -84.31 &  3.79 && -69.00 &  7.89 && -49.14 & 13.40 && -33.73 & 17.84 \\ 
+$\phi=\ang{90}$ & -83.04 &  4.08 && -62.40 &  9.57 && -54.01 & 12.09 && -42.10 & 15.62 \\ 
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[!htbp]
+\centering
+\subimport{Chapter5/Figs/pdftex}{potentialeff.pdf_tex}
+\caption{Δείκτης βελτίωσης ωφέλιμου δυναμικού (PEI) για κάθε συνδυασμό γωνίας και αριθμών βρόγχου σε σύγκριση με την απλή περίπτωση αξονικής ροής.}\label{fig:potentialeff}
+\end{figure}
+
+Το αξιοποιήσιμο δυναμικό, για όλες τις διατάξεις βρόγχου, ήταν αρνητικό. Η ροή ηλεκτρικής ενέργειας (δηλαδή η καταναλισκόμενη ισχύς του ανεμιστήρα) αξιοποιήθηκε πιο αποδοτικά στην αύξηση της ροής θερμικής ενέργειας προς τον αέρα, στη διάταξη αξονικής ροής. Αν περιοριστούμε όμως στις διατάξεις βρόγχων, η ροή ηλεκτρικής ενέργειας του ανεμιστήρα, αξιοποιήθηκε καλύτερα για το σύστημα 45 μοιρών και ενός βρόγχου (\qty[separate-uncertainty-units = single]{-31.86(1901)}{\percent}), και δυσμενέστερα για το σύστημα 45 μοιρών και τεσσάρων βρόγχων (\qty[separate-uncertainty-units = single]{-88.93(264)}{\percent}).
+
+Παρατηρώντας όλους τους δείκτες στο \prettyref{fig:potentialeff}, μπορούμε να συμπεράνουμε για τις εξεταζόμενες διατάξεις βρόγχων ότι αυξανόμενου του αριθμού βρόχων, βελτιώνεται ο δείκτης ωφέλιμου δυναμικού. Αυτό είναι απόρροια της φύσεως των γεωμετρικών χαρακτηριστικών των διατάξεων. Με περισσότερους βρόγχους, η περιδίνηση έχει περισσότερα μέτωπα να εξελιχθεί, με αποτέλεσμα την ενίσχυση της μεταφοράς θερμότητας, ενώ ταυτόχρονα μειώνονται οι απώλειες πίεσης άρα και απαιτούμενης ισχύος.
+
+Όσον αφορά τις αβεβαιότητες των μετρήσεων, αυτές κυμαίνονταν από \qty{59.64}{\percent} της ένδειξης για την διάταξη 45 μοιρών και τεσσάρων βρόγχων, μέχρι \qty{2.90}{\percent} για την διάταξη 45 μοιρών και ενός βρόγχου. H πλειονότητα των τιμών δεν είναι αξιόπιστη, για άλλη μια φορά δυστυχώς. Βάσει των τιμών αβεβαιοτήτων στον \prettyref{tab:potffindex}, διακρίνεται ότι ο αριθμός βρόγχων παίζει σημαντικό ρόλο στην αβεβαιότητα των μετρήσεων - αυξανόμενου του αριθμού βρόγχων, η αβεβαιότητα αυξάνεται. Αυτή η συμπεριφορά οφείλεται στην αντιπροσωπευτική τιμή ισχύος (βλ. \prettyref{eq:pei}). Όπως δείχνει ο \prettyref{tab:powerfits}, οι αβεβαιότητες στα μοντέλα παρεμβολής $\sigma _a,\sigma _b$, είναι μεγαλύτερες για αυξανόμενο αριθμό βρόγχων.

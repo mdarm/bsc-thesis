@@ -1,0 +1,295 @@
+%!TEX root = ../thesis.tex
+% ******************************* Thesis Appendix B ****************************
+
+% ******************************* Nomenclature ****************************************
+
+\nomenclature[z-KDE]{KDE}{Kernel Density Estimation}
+\nomenclature[a-$f$]{$f$}{συνάρτηση}
+\nomenclature[s-exp]{exp}{experimental}
+\nomenclature[s-tra]{tra}{transfered}
+\nomenclature[s-tot]{tot}{total}
+
+\chapter{Μέθοδος ελαχίστων τετραγώνων}\label{app:lsqAppendix}
+\begin{refsection}
+
+\noindent Η μέθοδος των ελαχίστων τετραγώνων είναι ένα δημοφιλές στατιστικό εργαλείο που χρησιμοποιείται σε ευρύ φάσμα επιστημών, φάσμα που εκτείνεται από τον τομέα της πληροφορικής μέχρι τον τομέα της ψυχολογίας. Στην απλούστερη μορφή της, η τεχνική, επιτρέπει τον προσδιορισμό εκτίμησης της κλίσης $m$ και της τομής $b$ (με την τεταγμένη καρτεσιανού συστήματος) μιας ευθείας γραμμής, για ένα σύνολο δεδομένων $(x_i, y_i)$.
+
+Στην παρούσα εργασία χρησιμοποιήθηκε μονάχα η απλή αυτή μορφή, και στο παράρτημα αυτό γίνεται μια συνοπτική ανασκόπηση της μεθόδου, καθώς επίσης και της λογικής που υιοθετήθηκε στον \prettyref{code:lsqfit}.
+
+Οι σχέσεις μοντελοποίησης που εξετάζονται είναι οι εξής: (i) γραμμική μοντελοποίηση και (ii) σχέση δύναμης (με κατάλληλο γραμμικό μετασχηματισμό).
+
+\section*{Γραμμική μοντελοποίηση}
+
+\noindent Η αναλυτική μέθοδος της γραμμικής παλινδρόμησης, βασιζόμενη στα ελάχιστα τετράγωνα πάντα, περιλαμβάνει τον προσδιορισμό των γραμμικών παραμέτρων $A$ και $B$ έτσι ώστε να ελαχιστοποιείται η συνολική απόκλιση μεταξύ των πειραματικών δεδομένων $(x_i, y_i)$ και της ευθείας $y = A + Bx$, λαμβάνοντας υπόψη τις αβεβαιότητες κάθε πειραματικού σημείου φυσικά. Με πιο απλά λόγια, βρίσκει τις παραμέτρους του μοντέλου εκείνες που δίνουν την καλύτερη δυνατή προσαρμογή στα διαθέσιμα δεδομένα.
+
+Για κάθε σημείο, η απόκλιση από την τεταγμένη (ή οριζόντια απόκλιση), υπολογίζεται λαμβάνοντας το τετράγωνο της διαφοράς μεταξύ των σημείων και της ευθείας, και δίνεται από
+
+\begin{align}\label{eqn:chi1}
+\left(y_i - A - B x_i\right)^2
+\end{align}
+
+\noindent Σε αυτή της τη μορφή, η μέθοδος των ελαχίστων τετραγώνων χρησιμοποιείται σε περιπτώσεις που θεωρείται, κατά σύμβαση, ότι δεν υπάρχει σφάλμα στη μεταβλητή $X$. Ωστόσο, υπάρχουν πολλές περιστάσεις στις οποίες αμφότερες μεταβλητές υπόκεινται σε σφάλματα, και δεν θεωρείται πλέον δόκιμο να ληφθούν μονάχα οι οριζόντιες αποκλίσεις. Για παράδειγμα, στο \prettyref{ch:results}, όπου μοντελοποιήθηκαν οι συναρτήσεις $\overline{Nu} = f(Re)$ και $P = f(Q)$. Σε τέτοιου είδους σενάρια, πρέπει είτε να γίνει επαναμοντελοποίηση του προβλήματος των ελαχίστων τετραγώνων \parencites{2001_Glaister}{1964_Deming_BOOK}{1987_Kendall_BOOK}{2006_Fuller_BOOK}{1993_Linnet} είτε να ληφθεί υπόψη η συνεισφορά της αβεβαιότητας $\delta x_i$ στη μεταβλητή $Y$ - πράγμα που θα διευκρινιστεί στη συνέχεια.
+
+Για κάθε σημείο, η απόκλιση \prettyref{eqn:chi1} διαιρείται με την αντίστοιχη αβεβαιότητα $\left(\delta y_i\right)^2$, ή διαφορετικά πολλαπλασιάζεται με τον όρο $w_i = 1 \: / \: \left(\delta y_i\right)^2$, ο οποίος δίνει τη δυνατότητα να προσδιοριστεί ο βαθμός συνεισφοράς κάθε μέτρησης στον υπολογισμό της λύσης. Τούτων λεχθέντων, η συνολική απόκλιση μετριέται με το άθροισμα των επιμέρους αποκλίσεων, για όλο το εύρος των σημείων, από:
+
+\begin{align}\label{eq:chi1}
+\chi ^2 = \displaystyle\sum_{i = 1} ^{N} \frac{\left(y_i - A - B x_i\right)^2}{\left(\delta y_i\right)^2} = \displaystyle\sum_{i = 1} ^{N} w_i \left(y_i - A - B x_i\right)^2
+\end{align}
+
+\noindent Ο αθροιστικός αυτός όρος είναι γνωστός και ως $\chi^2$ (chi square). Οι μεταβλητές $x_i, y_i$ και $\delta y_i$ είναι γνωστές, οπότε η ποσότητα $\chi^2$ δύναται να εκφραστεί συναρτήσει των παραμέτρων $A$ και $B$. Ο στόχος εδώ είναι να προσδιοριστούν, αναλυτικά, οι τιμές αμφότερων παραμέτρων έτσι ώστε να ελαχιστοποιείται η ποσότητα $\chi^2$. 
+
+Για να ελαχιστοποιείται λοιπόν η $\chi^2$ (\prettyref{eq:chi1}), ικανή και αναγκαία συνθήκη είναι να μηδενίζονται οι πρώτες παράγωγοι των δύο παράμετρών της:
+
+\begin{equation}\label{eq:sol}
+\left\{
+\begin{aligned}
+\frac{\partial \chi ^2}{\partial A} &= 0\\
+\frac{\partial \chi ^2}{\partial B} &= 0
+\end{aligned} \right.
+\qquad
+\Longrightarrow
+\qquad
+\left\{
+\begin{aligned}
+\left(\sum\nolimits_i w_i\right) A + \left(\sum\nolimits_i w_i x_i\right) B &=  \sum\nolimits_i w_i x_i\\
+\left(\sum\nolimits_i w_i x_i\right) A + \left(\sum\nolimits_i w_i x_i ^2\right) B &=  \sum\nolimits_i w_i x_i y_i
+\end{aligned} \right.
+\end{equation}
+
+\noindent Καταλήγουμε λοιπόν σε σύστημα δύο γραμμικών εξισώσεων, με αγνώστους τα $A$ και $Β$, των οποίων οι λύσεις είναι \parencites{2008_Fornasini_BOOK_CHAPTER}{1997_Taylor_BOOK_CHAPTER}{2018_HughW.Coleman_BOOK_CHAPTER}{1991_Lyons_BOOK_CHAPTER}:
+
+\begin{align}
+A &= \frac{\left(\sum\nolimits_i w_i x_i ^2\right) \left(\sum\nolimits_i w_i y_i \right) - \left(\sum\nolimits_i w_i x_i\right) \left(\sum\nolimits_i w_i x_i y_i\right)}{\Delta w} \label{eqn:Asol}\\
+B &= \frac{\left(\sum\nolimits_i w_i\right) \left(\sum\nolimits_i w_i x_i y_i \right) - \left(\sum\nolimits_i w_i y_i\right) \left(\sum\nolimits_i w_i x_i\right)}{\Delta w} \label{eqn:Bsol}
+\end{align}
+
+\noindent όπου 
+
+\begin{align}
+\Delta w = \left(\sum\nolimits_i w_i\right)\left(\sum\nolimits_i w_i x_i^2\right) - \left(\sum\nolimits_i w_i x_i\right)^2
+\end{align}
+
+\noindent Στην ειδική περίπτωση που οι αβεβαιότητες $\delta y_i$ είναι ίδιες για όλα τα σημεία, οι σχέσεις \prettyref{eqn:Asol} - \prettyref{eqn:Bsol} γίνονται:
+
+\begin{align}
+A &= \frac{\left(\sum\nolimits_i x_i ^2\right) \left(\sum\nolimits_i y_i \right) - \left(\sum\nolimits_i x_i\right) \left(\sum\nolimits_i x_i y_i\right)}{\Delta} \label{eqn:A'sol}\\
+B &= \frac{N\left(\sum\nolimits_i x_i y_i\right) - \left(\sum\nolimits_i y_i\right) \left(\sum\nolimits_i x_i\right)}{\Delta} \label{eqn:B'sol}
+\end{align}
+
+\noindent όπου 
+
+\begin{align}
+\Delta = N\left(\sum\nolimits_i x_i^2\right) - \left(\sum\nolimits_i x_i\right) ^2
+\end{align}
+
+\subsection*{Λαμβάνοντας υπόψη τις αβεβαιότητες της ανεξάρτητης μεταβλητής $x$}
+
+\noindent Όταν η φύση του υπολογισμού επιβάλει την ύπαρξη των αβεβαιοτήτων  $\delta x_i$, τότε αυτές δύναται να συμπεριληφθούν στην ανάλυση ακολουθώντας τα εξής βήματα \parencites{2008_Fornasini_BOOK_CHAPTER}{1997_Taylor_BOOK_CHAPTER}:
+
+\begin{enumerate}
+
+\item Υπολογίζονται οι παράμετροι $A'$ και $B'$ της γραμμικής παρεμβολής χρησιμοποιώντας τις σχέσεις \prettyref{eqn:A'sol} - \prettyref{eqn:B'sol}.
+\item Οι αβεβαιότητες $\left(\delta x_i \right)_{exp}$ της μεταβλητής $X$ μετατρέπονται σε συνεισφορές $\left(\delta y_i \right)_{tra}$ των αβεβαιοτήτων της $Y$, μέσω της διάδοσης σφαλμάτων όπως ορίζεται από τους \citeauthor{1953_Kline} \cite{1953_Kline}, δίνοντας για κάθε σημείο:
+
+\begin{align*}
+(\delta y_i)_{tra} = \sqrt{\left(\frac{\partial y}{\partial x} (\delta x_i)_{exp}\right)^2 } = \sqrt{\left(\frac{d (A' + B'x)}{d x} (\delta x_i)_{exp}\right)^2 } = |B'|\left(\delta x_i\right)_{exp}
+\end{align*}
+
+\item Οι δύο συνεισφορές στην αβεβαιότητα της $Y$, δηλαδή η πειραματική και η διαδιδόμενη, συνδυάζονται για κάθε σημείο με το άθροισμα των τετραγώνων τους όπως ορίζεται από τον \citeauthor{1988_Moffat} \cite{1988_Moffat}, δίνοντας:
+
+\begin{align*}
+(\delta y_i)_{tot}^2 = (\delta y_i)_{exp}^2 + (\delta y_i)_{tra}^2
+\end{align*}
+
+\item Οι τελικές παράμετροι $A$ και $B$ υπολογίζονται από τις σχέσεις \prettyref{eqn:Asol} - \prettyref{eqn:Bsol}, όπου πλέον $w_i = 1 \: / \: \left(\delta y_i\right)_{tot}^2$.
+
+\end{enumerate}
+
+\subsection*{Μια αλγεβρική προσέγγιση}
+
+\noindent Σε μορφή πινάκων, ένα γραμμικό μοντέλο δίνεται από:
+
+\begin{equation}\label{eqn:me}
+y = X\beta + \epsilon
+\end{equation}
+
+\noindent όπου
+
+\begin{itemize}
+\item $y$ ο πίνακας δεδομένων, διαστάσεων $n \times 1$
+\item $\beta$ ο πίνακας γραμμικών μεταβλητών, διαστάσεων $m \times 1$
+\item $X$ ο πίνακας επίλυσης, διαστάσεων $n \times m$
+\item $\epsilon$ ο πίνακας σφαλμάτων, διαστάσεων $n \times 1$
+\end{itemize}
+
+\noindent Για πολυώνυμο πρώτου βαθμού, οι $n$ εξισώσεις με δύο αγνώστους δύναται να εκφραστούν συναρτήσει των $y, X$ και $\beta$ από:
+
+\[
+\left[\begin{array}{c}
+y_1\\
+y_2\\
+y_3\\
+\vdots\\
+y_n
+\end{array}\right]
+=
+\left[\begin{array}{c}
+x_11\\
+x_21\\
+x_31\\
+\vdots\\
+x_n1
+\end{array}\right]
+\times
+\left[\begin{array}{c}
+p_1\\
+p_2
+\end{array}\right]
+\]
+
+\noindent Η επίλυση των ελαχίστων τετραγώνων του γραμμικού μοντέλου \prettyref{eqn:me} δίνεται από το άνυσμα $\hat{a}$, το οποίο υπολογίζει τους γραμμικούς συντελεστές $\beta$. Η εξίσωση επίλυσης είναι \cite{2012_Patera_BOOK_CHAPTER_LSQ}:
+
+\begin{equation}
+\left(X^TX\right)\hat{a} = X^Ty
+\end{equation}
+
+\noindent όπου $X^T$ ο ανάστροφος του πίνακα επίλυσης $X$. Λύνοντας για $\hat{a}$,
+
+\begin{equation}\label{eqn:lsqsol}
+\hat{a} = \left(X^T X\right)^{-1} X^T y = Χ \: / \: y 
+\end{equation}
+
+\noindent Η επίλυση $Χ \: / \: y$\footnote{γνωστή και ως εντολή \href{https://se.mathworks.com/help/matlab/ref/mldivide.html}{mldivide}} αποτελεί την κατά \matlab βέλτιστη λύση \cite{2012_Patera_BOOK_CHAPTER}. Λαμβάνοντας υπόψη τις αβεβαιότητες του ανύσματος $\epsilon$, η \prettyref{eqn:lsqsol} γίνεται:
+
+\begin{equation}
+\hat{a} = \left(X^T W X\right)^{-1} X^T Wy 
+\end{equation}
+
+\noindent όπου $W$ ο διαγώνιος πίνακας σφαλμάτων \cite{1989_Lyons_BOOK_CHAPTER}.
+\vspace{12pt}
+
+\noindent Ο Αλγόριθμος 1 περιγράφει τη διαδικασία προσαρμογής σε ευθεία γραμμή, ενός συνόλου δεδομένων $\left\{(x_i, y_i)\right\}_{i = 1}^m$.
+
+\begin{tcolorbox}[breakable, fonttitle=\bfseries, title=Αλγόριθμος 1: Γραμμική μοντελοποίηση]
+
+\large \textbf{Δεδομένα:} $\{x, y, \delta x, \delta y\} \in \mathbb{R}^m$, $n = 1$
+
+\large \textbf{Διαδικασία:}
+\begin{enumerate}
+\item Προσδιορισμός \textit{m} από το μέγεθος του ανύσματος δεδομένων x.
+\item Δημιουργία άδειου πίνακα \textbf{X}$\in\mathbb{R}^{m \times (n+1)} $
+\item Συμπλήρωση του πίνακα \textbf{X}.
+
+\IncMargin{3em}
+\begin{algorithm}[H]
+\setstretch{1.35}
+
+\For{$i = 1$ \KwTo $m$}{
+    \For{$j = 1$ \KwTo $n + 1$}{
+    $X_{i, j} = x_{i}^{j - 1}$
+    }
+}
+
+\end{algorithm}\DecMargin{3em}
+
+\item Επίλυση του συστήματος ελαχίστων τετραγώνων.\\
+ \^{a'} $= ( X^T X )^{-1} X^T y = Χ \, / \, y$
+
+\item Λήψη συντελεστών γραμμικής παρεμβολής.\\ $ c = \hat{a'} = (m', b')^T $ \hfill -προσδιορίζει το γραμμικό μοντέλο\\ \phantom{a} \hfill  $y = m'x + b'$
+
+\item Προσδιορισμός συνεισφοράς $(\delta x_i)_{exp}$ σφάλματος στην $y$.\\ $(\delta y_i)_{tra} = \sqrt{\left(\displaystyle\frac{\partial y}{\partial x} (\delta x_i)_{exp}\right)^2 } = |m'|(\delta x_i)_{exp}$
+\item Προσδιορισμός συνολικού σφάλματος $(\delta y_i)_{tot}$.\\ $(\delta y_i)_{tot}^2 = (\delta y_i)_{exp}^2 + (\delta y_i)_{tra}^2$ 
+\item Προσδιορισμός πίνακα σταθμισμένων, πλέον, δεδομένων $\beta$.\\$\beta = y \: ./ \: (\delta y)_{tot}$
+\item Επανασυμπλήρωση του πίνακα \textbf{X}.
+
+\IncMargin{3em}
+\begin{algorithm}[H]
+\setstretch{1.35}
+
+\For{$i = 1$ \KwTo $m$}{
+    \For{$j = 1$ \KwTo $n + 1$}{
+    $X_{i, j} = x_{i}^{j - 1} \: \backslash \: (\delta y_i)_{tot}$
+    }
+}
+
+\end{algorithm}\DecMargin{3em}
+
+\item Επίλυση του συστήματος ελαχίστων τετραγώνων.\\
+\^{a} $= ( X^T X )^{-1} X^T \beta = Χ \: / \: \beta$ 
+ 
+\end{enumerate}
+ 
+\large \textbf{Αποτελέσματα:}
+\begin{itemize}
+\item Λήψη συντελεστών γραμμικής παρεμβολής.\\ $ c = \hat{a} = (m, b)^T $ \hfill -προσδιορίζει το γραμμικό μοντέλο\\ \phantom{a} \hfill $y = mx + b$
+\end{itemize}
+
+\end{tcolorbox}
+
+\subsection*{Γραμμική παλινδρόμηση σχέσεων δύναμης}
+
+\noindent Ένα μοντέλο δύναμης έχει μορφή:
+\begin{equation*}
+y = ax^b
+\end{equation*}
+
+\noindent Λαμβάνοντας το φυσικό λογάριθμο της ανωτέρω σχέσης έχουμε:
+
+$$lny = ln \left(ax^b\right) \quad \longrightarrow \quad lny = lna + lnx^b \quad \longrightarrow \quad lny = lna + blnx$$
+
+\begin{align}\label{eq:tran}
+\boxed{
+lny = ln \left(ax^b\right) \quad \Longleftrightarrow \quad lny = lna + blnx
+}
+\end{align}
+
+\noindent Η \prettyref{eq:tran} δεν είναι τίποτε άλλο παρά ένα πολυώνυμο πρώτου βαθμού και, ως εκ τούτου, δύναται να γραφτεί ως:
+
+ $$y_l = a_o + a_1 x_l$$	
+
+\noindent όπου έχει προηγηθεί η εξής αντικατάσταση μεταβλητών
+
+$$y_l = lny, \quad x_l = lnx$$
+
+\noindent Λογικό και επόμενο λοιπόν:
+\begin{align}
+lna = a_0 \quad &\longrightarrow \quad \boxed{a = e^{a_{0}}}\\
+&\boxed{b = a_1}
+\end{align}
+
+\noindent Ο Αλγόριθμος 2 περιγράφει τη διαδικασία προσαρμογής σε σχέση δύναμης, ενός συνόλου δεδομένων $\left\{(x_i, y_i)\right\}_{i = 1}^m$.
+
+\begin{tcolorbox}[breakable, fonttitle=\bfseries, title=Αλγόριθμος 2: Μοντελοποίηση δεδομένων σε σχέση δύναμης]
+
+\large \textbf{Δεδομένα:} $\{x, y, \delta x, \delta y \} \in \mathbb{R}^m$
+
+\large \textbf{Διαδικασία:}
+\begin{enumerate}
+\item Γραμμικός μετασχηματισμός όλων των $x_i$ και $y_i$ δεδομένων, καθώς επίσης και των αντίστοιχων σφαλμάτων τους.
+
+\begin{align*}
+x_l &= ln x_i, & \delta x_l &= \sqrt{\left(\frac{\partial x_l}{\partial x_i} \delta x_i\right)^2} &= \sqrt{\left(\frac{d ln(x_i)}{d x_i} \delta x_i\right)^2} &= \left|\frac{\delta x_i}{x_i}\right| \\
+y_l &= ln y_i, & \delta y_l &= \sqrt{\left(\frac{\partial y_l}{\partial y_i} \delta y_i\right)^2} &= \sqrt{\left(\frac{d ln(y_i)}{d y_i} \delta y_i\right)^2} &= \left|\frac{\delta y_i}{y_i}\right|
+\end{align*}
+
+\item Προσδιορισμός συντελεστών γραμμικής παρεμβολής \^{a}, για τα πλέον μετασχηματισμένα δεδομένα και αβεβαιότητες ($x_l, y_l, \delta x_l, \delta y_l$), κάνοντας χρήση του Αλγορίθμου 1.
+
+\item Προσδιορισμός συντελεστών δύναμης m και b από \^{a} = $(a_0, a_1)^T$.\\ $m = e^{a_0}, \quad b = a_1$
+\end{enumerate}
+
+\large \textbf{Αποτελέσματα:}
+\begin{itemize}
+\item Λήψη συντελεστών παρεμβολής δύναμης.\\ $ c = \hat{a} = (m, b)^T $ \hfill -προσδιορίζει το μοντέλο δύναμης\\ \phantom{a} \hfill $y = mx^b$
+\end{itemize}
+
+\end{tcolorbox}
+
+\printbibheading
+\begin{english}
+\printbibliography[heading=subbibliography, type = book, title = {Βιβλία}]
+\printbibliography[heading=subbibliography, type = inbook, title = {Κεφάλαια βιβλίων}]
+\printbibliography[heading = subbibliography, type = article, title = {Δημοσιεύσεις}]
+\printbibliography[heading=subbibliography, type = misc, title = {Ξένος κώδικας}]
+\end{english}
+
+\end{refsection}

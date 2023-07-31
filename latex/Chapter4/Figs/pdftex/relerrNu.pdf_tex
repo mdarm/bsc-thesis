@@ -1,0 +1,163 @@
+%% Creator: Inkscape 1.0 (4035a4fb49, 2020-05-01), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'relerrNu.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{468bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,1.15064103)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{relerrNu.pdf}}%
+    \put(0.18136603,0.77954054){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}100\end{tabular}}}}%
+    \put(0.24602115,0.77954054){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}200\end{tabular}}}}%
+    \put(0.31067644,0.77954054){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}300\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{relerrNu.pdf}}%
+    \put(0.13466875,0.8073718){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}5.5\end{tabular}}}}%
+    \put(0.13466875,0.85705128){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}6\end{tabular}}}}%
+    \put(0.13466875,0.90673077){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}6.5\end{tabular}}}}%
+    \put(0.13466875,0.95641026){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}7\end{tabular}}}}%
+    \put(0.13466875,1.00608974){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}7.5\end{tabular}}}}%
+    \put(0.13466875,1.05576923){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}8\end{tabular}}}}%
+    \put(0.0376166,0.93157067){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$\displaystyle\frac{\delta Nu_x}{Nu_x} (\%)$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{relerrNu.pdf}}%
+    \put(0.45627292,0.77954054){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}100\end{tabular}}}}%
+    \put(0.52770144,0.77954054){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}300\end{tabular}}}}%
+    \put(0.59912997,0.77954054){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}500\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{relerrNu.pdf}}%
+    \put(0.41511747,0.8073718){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}5.5\end{tabular}}}}%
+    \put(0.41511747,0.85705128){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}6\end{tabular}}}}%
+    \put(0.41511747,0.90673077){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}6.5\end{tabular}}}}%
+    \put(0.41511747,0.95641026){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}7\end{tabular}}}}%
+    \put(0.41511747,1.00608974){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}7.5\end{tabular}}}}%
+    \put(0.41511747,1.05576923){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}8\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{relerrNu.pdf}}%
+    \put(0.73274952,0.77954054){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}100\end{tabular}}}}%
+    \put(0.77770481,0.77954054){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}150\end{tabular}}}}%
+    \put(0.82266026,0.77954054){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}200\end{tabular}}}}%
+    \put(0.86761571,0.77954054){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}250\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{relerrNu.pdf}}%
+    \put(0.69556619,0.8073718){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}5.5\end{tabular}}}}%
+    \put(0.69556619,0.85705128){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}6\end{tabular}}}}%
+    \put(0.69556619,0.90673077){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}6.5\end{tabular}}}}%
+    \put(0.69556619,0.95641026){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}7\end{tabular}}}}%
+    \put(0.69556619,1.00608974){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}7.5\end{tabular}}}}%
+    \put(0.69556619,1.05576923){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}8\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{relerrNu.pdf}}%
+    \put(0.16778189,0.43498926){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}100\end{tabular}}}}%
+    \put(0.23325785,0.43498926){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}150\end{tabular}}}}%
+    \put(0.29873397,0.43498926){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}200\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{relerrNu.pdf}}%
+    \put(0.13466875,0.46282051){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}5.5\end{tabular}}}}%
+    \put(0.13466875,0.5125){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}6\end{tabular}}}}%
+    \put(0.13466875,0.56217949){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}6.5\end{tabular}}}}%
+    \put(0.13466875,0.61185897){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}7\end{tabular}}}}%
+    \put(0.13466875,0.66153846){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}7.5\end{tabular}}}}%
+    \put(0.13466875,0.71121795){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}8\end{tabular}}}}%
+    \put(0.0376166,0.58701939){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$\displaystyle\frac{\delta Nu_x}{Nu_x} (\%)$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=9]{relerrNu.pdf}}%
+    \put(0.43374231,0.43498926){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}100\end{tabular}}}}%
+    \put(0.5192375,0.43498926){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}150\end{tabular}}}}%
+    \put(0.60473253,0.43498926){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}200\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=10]{relerrNu.pdf}}%
+    \put(0.41511747,0.46282051){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}5.5\end{tabular}}}}%
+    \put(0.41511747,0.5125){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}6\end{tabular}}}}%
+    \put(0.41511747,0.56217949){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}6.5\end{tabular}}}}%
+    \put(0.41511747,0.61185897){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}7\end{tabular}}}}%
+    \put(0.41511747,0.66153846){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}7.5\end{tabular}}}}%
+    \put(0.41511747,0.71121795){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}8\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=11]{relerrNu.pdf}}%
+    \put(0.71977468,0.43498926){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}100\end{tabular}}}}%
+    \put(0.79213381,0.43498926){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}150\end{tabular}}}}%
+    \put(0.86449279,0.43498926){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}200\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=12]{relerrNu.pdf}}%
+    \put(0.69556619,0.46282051){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}5.5\end{tabular}}}}%
+    \put(0.69556619,0.5125){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}6\end{tabular}}}}%
+    \put(0.69556619,0.56217949){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}6.5\end{tabular}}}}%
+    \put(0.69556619,0.61185897){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}7\end{tabular}}}}%
+    \put(0.69556619,0.66153846){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}7.5\end{tabular}}}}%
+    \put(0.69556619,0.71121795){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}8\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=13]{relerrNu.pdf}}%
+    \put(0.15306619,0.09043798){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}100\end{tabular}}}}%
+    \put(0.22131795,0.09043798){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}200\end{tabular}}}}%
+    \put(0.28956987,0.09043798){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}300\end{tabular}}}}%
+    \put(0.24278846,0.05464744){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$Nu_x$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=14]{relerrNu.pdf}}%
+    \put(0.13466875,0.11826923){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}5.5\end{tabular}}}}%
+    \put(0.13466875,0.16794872){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}6\end{tabular}}}}%
+    \put(0.13466875,0.21762821){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}6.5\end{tabular}}}}%
+    \put(0.13466875,0.26730769){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}7\end{tabular}}}}%
+    \put(0.13466875,0.31698718){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}7.5\end{tabular}}}}%
+    \put(0.13466875,0.36666667){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}8\end{tabular}}}}%
+    \put(0.0376166,0.24246811){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$\displaystyle\frac{\delta Nu_x}{Nu_x} (\%)$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=15]{relerrNu.pdf}}%
+    \put(0.47636218,0.09043798){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}200\end{tabular}}}}%
+    \put(0.53886218,0.09043798){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}400\end{tabular}}}}%
+    \put(0.60136218,0.09043798){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}600\end{tabular}}}}%
+    \put(0.52323734,0.05464744){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$Nu_x$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=16]{relerrNu.pdf}}%
+    \put(0.41511747,0.11826923){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}5.5\end{tabular}}}}%
+    \put(0.41511747,0.16794872){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}6\end{tabular}}}}%
+    \put(0.41511747,0.21762821){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}6.5\end{tabular}}}}%
+    \put(0.41511747,0.26730769){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}7\end{tabular}}}}%
+    \put(0.41511747,0.31698718){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}7.5\end{tabular}}}}%
+    \put(0.41511747,0.36666667){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}8\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=17]{relerrNu.pdf}}%
+    \put(0.7123742,0.09043798){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}100\end{tabular}}}}%
+    \put(0.85679359,0.09043798){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}150\end{tabular}}}}%
+    \put(0.80368606,0.05464744){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$Nu_x$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=18]{relerrNu.pdf}}%
+    \put(0.69556619,0.11826923){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}5.5\end{tabular}}}}%
+    \put(0.69556619,0.16794872){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}6\end{tabular}}}}%
+    \put(0.69556619,0.21762821){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}6.5\end{tabular}}}}%
+    \put(0.69556619,0.26730769){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}7\end{tabular}}}}%
+    \put(0.69556619,0.31698718){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}7.5\end{tabular}}}}%
+    \put(0.69556619,0.36666667){\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}8\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=19]{relerrNu.pdf}}%
+  \end{picture}%
+\endgroup%

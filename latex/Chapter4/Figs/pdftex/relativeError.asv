@@ -1,0 +1,32 @@
+%% Do for flowrate, power consumption, Reynolds/Nusselt numbers and Q
+time = linspace(min(min(min(timeData))), max(max(max(timeData))), 200);
+
+relErr = sqrt((./ time) .^ 2);
+
+
+
+figure;
+hold on;
+hFit = line(flow, relErr * 100);
+
+% Add labels
+hXLabel = xlabel('$P$');
+hYLabel = ylabel('$\displaystyle\frac{\delta P}{P} (\%)$');
+
+% Adjust y label position
+set(hYLabel,'rotation',0,'VerticalAlignment','middle');
+set(hYLabel, 'Position', get(hYLabel, 'Position') - [2, 0 0])%
+
+% Adjust line properties
+set(hFit, 'Color', [0 0 0]);
+set(hFit, 'LineWidth', 2);
+
+% Adjust axes properties
+set(gca, 'Box', 'off', 'XMinorTick', 'on', 'YMinorTick', 'on',...
+                    'TickDir', 'out', 'TickLength', [.02 .02],...
+                    'LineWidth', 1, 'XColor', [.3 .3 .3],...
+                    'YColor', [.3 .3 .3], 'YGrid', 'on');
+                
+PlotDimensions(gcf, 'centimeters', [15.747, 8], 12);
+ChangeInterpreter(gcf, 'latex');
+Plot2LaTeX(gcf, 'relerrt');
