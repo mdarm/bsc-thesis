@@ -33,7 +33,7 @@ The `raw data` directory contains two sub-directories: `error estimate` and `flo
 
 ### latex
 
-The `LaTeX` code for the [thesis](latex/thesis.pdf) report. The rendering process is automated using the [compile-thesis-windows.bat](latex/compile-thesis-windows.bat) file.
+The LaTeX code for the [thesis](latex/thesis.pdf) report. The rendering process is automated using the [compile-thesis-windows.bat](latex/compile-thesis-windows.bat) file.
 
 ### outputs
 
