@@ -1,4 +1,4 @@
-# Source code for the B.Sc. thesis
+# Source code for B.Sc. thesis
 This repository contains the MATLAB source code for the thesis entitled: *Experimental study of swirl flow and heat transfer in concentric cylinders with tangential inlet flow*. It is an experimental research study of confined air flow which estimates the heat transfer enhancement under various flow conditions. The results of the computation are given in two files: [results.txt](outputs/results.txt) and [data.txt](outputs/data.txt), both of which have been formatted in a way that greatly simplifies their implementation in a LaTeX document (i.e. tables and tikz figures). 
 
 ## Prerequisites
